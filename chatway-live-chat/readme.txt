@@ -95,7 +95,7 @@ Chatway's live chat demo site is a user-friendly platform designed for efficient
 == Installation ==
 1. Install and activate Chatway plugin on your WordPress website
 2. Create a free account through the plugin signup screen
-3. You're good to go! The Chatway live chat widget will appear on your website 🚀
+3. You're good to go! The Chatway live chat widget will appear on your WordPress website 🚀
 
 == Frequently Asked Questions ==
 
@@ -106,6 +106,12 @@ It’s easy. Install the plugin , create your account, set up your widget and in
 Yes, Chatway has a 100% free plan.
 You can choose the Free plan for basic live chat features, or upgrade to the Pro plan to access our robust live chat capabilities and the option to add agents, along with additional premium features.
 <a href="https://chatway.app/pricing/?utm_source=wplisting" target="_blank" title="Chatway Live Chat pricing">Check out Chatway's Live Chat pricing ⭐</a>
+
+= Can Chatway live chat be installed on any platform? =
+Yes, Chatway live chat can be installed on any platform.
+
+= Can Chatway live chat be installed on unlimited websites? =
+Yes, you can install Chatway live chat on unlimited websites and manage all chat conversations from one place.
 
 = Can I live chat with my customers on mobile? =
 Yes, you can manage all conversations on Chatway live chat using your mobile device.
