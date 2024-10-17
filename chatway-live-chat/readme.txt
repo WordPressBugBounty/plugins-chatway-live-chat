@@ -1,16 +1,16 @@
-Live Chat, WordPress Website Chat Plugin, Helpdesk Customer Support WP Live Chat App: Chatway
+Live Chat, WordPress Website Chat Plugin, FAQ, Helpdesk Customer Support WP Live Chat App: Chatway
 Contributors: galdub, tomeraharon, chatway
-Tags: live chat, chat, customer support, website chat, chat plugin
+Tags: live chat, chat, customer support, faq, chat plugin
 Requires at least: 3.1
 Stable tag: 1.2.5
 Plugin URI: https://chatway.app/
 License: GPLv3
 
-🎉 Live chat with your visitors through WordPress. Provide customer support with the Chatway live chat app & helpdesk. 📲 iOS & Android apps available
+🎉 Live chat with your visitors through WordPress. Customer support with the Chatway live chat app, FAQ, & helpdesk. 📲 iOS & Android apps available
 
 == Description ==
 
-Live chat with your website's visitors through WordPress. Provide customer support using the Chatway live chat app & helpdesk with an easy-to-use click to chat interface.
+Live chat with your website's visitors through WordPress. Provide customer support using the Chatway live chat app, FAQ & helpdesk with an easy-to-use click to chat interface.
 
 Chatway live chat is a lightweight, easy-to-use helpdesk live chat app for communicating better with your customers & provide live chat customer support. Your customers can easily talk and engage with your business from anywhere, at any time using the live chat button on your WordPress website.
 
@@ -18,17 +18,18 @@ Chatway live chat is a lightweight, easy-to-use helpdesk live chat app for commu
 
 = 👩‍💻 Why do you need Helpdesk Live Chat for your website? =
 - Real-Time Customer Support: Implementing live chat on your website allows customers to receive instant assistance, enhancing their experience and increasing satisfaction. Live chat facilitates quick issue resolution and builds trust in your brand.
-- Lead Generation: Utilize helpdesk live chat as a proactive tool to engage website visitors. Initiate conversations, answer inquiries, and guide potential customers, converting their interest into valuable leads. Live chat enables real-time interaction, fostering meaningful connections.
+- Lead Generation: Utilize helpdesk live chat & FAQ as a proactive tool to engage website visitors. Initiate conversations, answer inquiries, and guide potential customers, converting their interest into valuable leads. Live chat enables real-time interaction, fostering meaningful connections.
 - Customer Feedback and Surveys: Embed helpdesk live chat to gather instant feedback from your website users. Engage them in real-time conversations, addressing concerns, and collecting valuable insights. Live chat transforms your website into an interactive platform for constructive feedback.
-- Sales Support: Boost your e-commerce sales by integrating live chat for personalized customer assistance during the buying process. Guide users through product selection, address queries, and offer real-time customer support, enhancing the overall shopping experience.
-- Technical Customer Support and Troubleshooting: Enhance customer satisfaction by providing live chat support for technical queries and issue resolution. Empower users to seek real-time assistance, troubleshoot problems, and receive immediate solutions, minimizing downtime and frustration.
-- Visitor Engagement and Retention: Implement helpdesk live chat to proactively engage website visitors. Offer assistance, share relevant content, and create a personalized experience. Live chat becomes a dynamic tool for fostering visitor engagement and increasing the likelihood of their return.
+- Sales Support: Boost your e-commerce sales by integrating live chat & FAQ for personalized customer assistance during the buying process. Guide users through product selection, address queries, and offer real-time customer support, enhancing the overall shopping experience.
+- Technical Customer Support and Troubleshooting: Enhance customer satisfaction by providing live chat support & FAQ for technical queries and issue resolution. Empower users to seek real-time assistance, troubleshoot problems, and receive immediate solutions, minimizing downtime and frustration.
+- Visitor Engagement and Retention: Implement helpdesk live chat & FAQ to proactively engage website visitors. Offer assistance, share relevant content, and create a personalized experience. Live chat becomes a dynamic tool for fostering visitor engagement and increasing the likelihood of their return.
 
 = 🎉 Chatway Live Chat is a powerful live chat WordPress plugin =
-Chatway live chat is a powerful and versatile helpdesk live chat plugin, designed to enhance website engagement and support user interactions. With Chatway live chat, you can easily integrate live chat functionality into your site, providing real-time assistance to visitors, improving customer satisfaction, and boosting conversion rates. It's a valuable tool for any online business. Chatway live chat is a robust and user-friendly live chat plugin that effortlessly bolsters website engagement, offers real-time visitor customer support, and enhances online business conversion rates. An invaluable resource for website owners.
+Chatway live chat is a powerful and versatile helpdesk live chat plugin, designed to enhance website engagement and support user interactions. With Chatway live chat, you can easily integrate live chat & FAQ functionality into your site, providing real-time assistance to visitors, improving customer satisfaction, and boosting conversion rates. It's a valuable tool for any online business. Chatway live chat is a robust and user-friendly live chat plugin that effortlessly bolsters website engagement, offers real-time visitor customer support, and enhances online business conversion rates. An invaluable resource for website owners.
 
 = 💬 What You Get With Chatway Live Chat =
 - Engage your website visitors and customers over live chat
+- Show FAQ and reduce customer support live chat tickets
 - Provide easy content and file sharing within chat for improved helpdesk live chat customer support
 - Allow you to monitor chats with support agents in a single click
 - Let you see the conversation history and get the full picture before responding
@@ -45,6 +46,9 @@ You can live chat with your website's visitors directly from the Chatway panel, 
 Once you sign up, a free <a href="https://chatway.app" target="_blank" title="Chatway Live Chat">Chatway live chat</a> account will be created for you, the live chat script will be added to your website, and a click to chat widget will appear on your website. If you log out or remove the plugin, the chat widget will be removed from your website.
 You can choose the Free plan for basic live chat features, or upgrade to the Pro plan to access our robust live chat capabilities and the option to add agents, along with additional premium features.
 <a href="https://chatway.app/pricing/?utm_source=wplisting" target="_blank" title="Chatway Live Chat pricing">Check out Chatway's Live Chat pricing ⭐</a>
+
+= ❓ Add FAQ to reduce customer support chat tickets =
+Our WordPress live chat plugin includes an enhanced FAQ feature to reduce customer support tickets. With this FAQ integration, users can access instant answers within the live chat, addressing common questions without needing support. This customizable FAQ tool helps reduce ticket volume and improve customer satisfaction. By providing relevant information directly in the live chat, users resolve their issues faster, making support more efficient and streamlined
 
 = 💾 Canned responses saved replies for commonly asked questions =
 Enhance your customer support efficiency with canned responses saved replies to common queries. This feature allows customer support chat agents to swiftly select and send standard responses, ensuring quick and consistent communication. No more typing the same message repeatedly—save time and reduce errors with our customizable canned responses feature.
@@ -116,6 +120,8 @@ Yes, you can install Chatway live chat on unlimited websites and manage all chat
 = Can I live chat with my customers on mobile? =
 Yes, you can manage all conversations on Chatway live chat using your mobile device.
 
+= Can I add FAQ to my Chatway live chat widget? =
+Yes, you can add FAQ and reduce your customer support chat tickets by showing answers to your most common questions.
 
 = Can I handle multiple conversations simultaneously? =
 Yes, you can. Chatway live chat makes it easy for you to switch between conversations and respond to your customers in a timely manner.
@@ -129,11 +135,12 @@ Yes, you can. Your team will be able to respond to live chat tickets once you in
 == Screenshots ==
 
 1. Communicate with your website's visitor through live chat
-2. Canned responses saved replies for better live chat communication with your website visitors
-3. Download our iOS and Android apps and live chat with your website's visitors on the go
-4. Invite your team as agents so they can live chat with your visitors as well
-5. Full chat history with every person your chat with
-6. Share files with your visitors through live chat
+2. Add FAQ to your Chatway live chat widget and reduce live chat customer support tickets
+3. Canned responses saved replies for better live chat communication with your website visitors
+4. Download our iOS and Android apps and live chat with your website's visitors on the go
+5. Invite your team as agents so they can live chat with your visitors as well
+6. Full chat history with every person your chat with
+7. Share files with your visitors through live chat
 
 == Changelog ==
 
