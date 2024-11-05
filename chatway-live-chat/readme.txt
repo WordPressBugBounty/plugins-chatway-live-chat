@@ -2,7 +2,7 @@ Live Chat, WordPress Website Chat Plugin, FAQ, Helpdesk Customer Support WP Live
 Contributors: galdub, tomeraharon, chatway
 Tags: live chat, chat, customer support, faq, chat plugin
 Requires at least: 3.1
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 Plugin URI: https://chatway.app/
 License: GPLv3
 
@@ -143,6 +143,9 @@ Yes, you can. Your team will be able to respond to live chat tickets once you in
 7. Share files with your visitors through live chat
 
 == Changelog ==
+
+= 1.2.6 =
+FAQ bug fixed
 
 = 1.2.5 =
 Chatway live chat activation improvement

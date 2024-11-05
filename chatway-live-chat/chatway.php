@@ -3,10 +3,8 @@
  * Plugin Name:       Chatway Live Chat
  * Contributors:      galdub, tomeraharon
  * Description:       Chatway is a live chat app. Use Chatway to chat with your website's visitors.
- * Version:           1.2.5
- * Requires at least: 6.0
- * Requires PHP:      7.2
- * Tested up to:      6.6
+ * Version:           1.2.6
+ * Tested up to:      6.7
  * Author:            Chatway
  * Author URI:        https://chatway.app/
  * License:           GPL v3 or later
@@ -31,7 +29,7 @@ class Chatway {
      * 4. readme.txt Stable tag
      */ 
     public static function version() {
-        return '1.2.5';
+        return '1.2.6';
     }
 
     public function boot() {

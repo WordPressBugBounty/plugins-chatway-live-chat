@@ -46,7 +46,7 @@ class Url {
     }
 
     public static function widget_script( $identifier = '' ) {
-        return self::base_url( 'widget', '/widget.js?id=' . $identifier );
+        return self::base_url( 'widget', '/widget.js?include[]=faqs&id=' . $identifier );
     }
 
     public static function internal_api( $endpoint = '' ) {
