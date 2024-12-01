@@ -25,7 +25,7 @@ class Base {
     public function plugin_redirect() {
         if ( ! defined( "DOING_AJAX" ) && get_option( 'chatway_redirection', false ) ) {
             delete_option( 'chatway_redirection' );
-            exit( wp_redirect( "admin.php?page=chatway" ) );
+            exit( wp_redirect( admin_url("admin.php?page=chatway") ) );
         }
     }
 

@@ -1,4 +1,4 @@
-Live Chat, WordPress Website Chat Plugin, FAQ, Helpdesk Customer Support WP Live Chat App: Chatway
+Chatway Live Chat - Customer Support, FAQ & Helpdesk Customer Service
 Contributors: galdub, tomeraharon, chatway
 Tags: live chat, chat, customer support, faq, chat plugin
 Requires at least: 3.1
@@ -6,7 +6,7 @@ Stable tag: 1.2.6
 Plugin URI: https://chatway.app/
 License: GPLv3
 
-🎉 Live chat with your visitors through WordPress. Customer support with the Chatway live chat app, FAQ, & helpdesk. 📲 iOS & Android apps available
+🎉 Live chat with your website’s visitor. Provide customer support & show FAQ with Chatway live chat. 📲 iOS & Android apps available
 
 == Description ==
 
@@ -14,7 +14,7 @@ Live chat with your website's visitors through WordPress. Provide customer suppo
 
 Chatway live chat is a lightweight, easy-to-use helpdesk live chat app for communicating better with your customers & provide live chat customer support. Your customers can easily talk and engage with your business from anywhere, at any time using the live chat button on your WordPress website.
 
-[youtube  https://www.youtube.com/watch?v=irA15HIm8cI]
+[youtube  https://www.youtube.com/watch?v=Ra21ZeZwz50]
 
 = 👩‍💻 Why do you need Helpdesk Live Chat for your website? =
 - Real-Time Customer Support: Implementing live chat on your website allows customers to receive instant assistance, enhancing their experience and increasing satisfaction. Live chat facilitates quick issue resolution and builds trust in your brand.
@@ -50,13 +50,13 @@ You can choose the Free plan for basic live chat features, or upgrade to the Pro
 = ❓ Add FAQ to reduce customer support chat tickets =
 Our WordPress live chat plugin includes an enhanced FAQ feature to reduce customer support tickets. With this FAQ integration, users can access instant answers within the live chat, addressing common questions without needing support. This customizable FAQ tool helps reduce ticket volume and improve customer satisfaction. By providing relevant information directly in the live chat, users resolve their issues faster, making support more efficient and streamlined
 
-= 💾 Canned responses saved replies for commonly asked questions =
-Enhance your customer support efficiency with canned responses saved replies to common queries. This feature allows customer support chat agents to swiftly select and send standard responses, ensuring quick and consistent communication. No more typing the same message repeatedly—save time and reduce errors with our customizable canned responses feature.
-
-= 📱 Live Chat Anywhere Using Our Native Mobile Apps =
+= 📱 Live Chat Anywhere Using Our Native Mobile Apps for iOS & Android =
 Besides our robust web live chat app, Chatway's iOS and Android apps allow users to engage with website visitors while on the go. This mobile application offers real-time communication and convenience, enabling timely responses and stronger connections with the audience. Download the app now to stay connected and chat with visitors wherever you are.
 <a href="https://apps.apple.com/us/app/chatway-website-live-chat/id6449775006" target="_blank" title="Chatway for iOS">Download Chatway for iOS 🔗</a>
 <a href="https://play.google.com/store/apps/details?id=com.chatway.mobile" target="_blank" title="Chatway for Android">Download Chatway for Android 🔗</a>
+
+= 💾 Canned responses saved replies for commonly asked questions =
+Enhance your customer support efficiency with canned responses saved replies to common queries. This feature allows customer support chat agents to swiftly select and send standard responses, ensuring quick and consistent communication. No more typing the same message repeatedly—save time and reduce errors with our customizable canned responses feature.
 
 = 👩‍💻 Invite your team as agents to Chatway live chat =
 Chatway live chat offers the option to invite teammates as agents or admins, facilitating collaborative customer live chat support. By adding agents to the platform, businesses can distribute workloads and ensure seamless customer service. Invite and empower your team to work together effectively and provide excellent live chat customer support to website visitors using Chatway live chat.

@@ -355,7 +355,7 @@ to {
     }
 `,ti=tr.div`
     padding: 70px 0 50px 0;
-`;function ni(){return(0,e.jsxs)(ei,{children:[(0,e.jsxs)(ti,{children:[(0,e.jsxs)(sr,{sx:{color:"rgba(255, 255, 255, 0.8)",fontSize:"14px",lineHeight:"19px"},children:["Over"," ",(0,e.jsx)(sr,{as:"span",sx:{color:"#fff",fontWeight:"600 !important",fontSize:"18px !important",display:"inline-block"},children:"400"})," ","Five-Star Reviews:"]}),(0,e.jsx)(Xo,{})]}),(0,e.jsx)(Qo,{})]})}const ri=tr("div")`
+`;function ni(){return(0,e.jsxs)(ei,{children:[(0,e.jsxs)(ti,{children:[(0,e.jsxs)(sr,{sx:{color:"rgba(255, 255, 255, 0.8)",fontSize:"14px",lineHeight:"19px"},children:["Over"," ",(0,e.jsx)(sr,{as:"span",sx:{color:"#fff",fontWeight:"600 !important",fontSize:"18px !important",display:"inline-block"},children:"800"})," ","Five-Star Reviews:"]}),(0,e.jsx)(Xo,{})]}),(0,e.jsx)(Qo,{})]})}const ri=tr("div")`
     display: flex;
     flex-direction: column;
     justify-content: center;
