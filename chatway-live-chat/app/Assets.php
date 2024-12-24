@@ -31,6 +31,32 @@ class Assets {
                 'widgetId' => $user_identifier
             ];
             wp_localize_script( 'chatway-script', 'wpChatwaySettings',  $data );
+
+            // Chatway Script
+            $file_path = \Chatway::require( 'assets/js/frontend.asset.php', true );
+            if( file_exists( $file_path ) ) {
+                $file = require $file_path;
+                $version = $file['version'];
+                $dependencies = $file['dependencies'];
+                $dependencies[] = 'jquery';
+
+                /**
+                 * enqueue admin assets
+                 */
+                wp_enqueue_script(
+                    'chatway-frontend', \Chatway::url( 'assets/js/frontend.js' ), $dependencies, $version, [
+                        'in_footer' => true,
+                        'strategy'  => 'defer'
+                    ]
+                );
+
+                wp_localize_script(
+                    'chatway-frontend', 'chatwaySettings', [
+                        'ajaxURL'  => admin_url('admin-ajax.php'),
+                        'widgetId' => $user_identifier
+                    ]
+                );
+            }
         endif;
     }
 

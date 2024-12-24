@@ -2,7 +2,7 @@ Chatway Live Chat - Customer Support, FAQ & Helpdesk Customer Service
 Contributors: galdub, tomeraharon, chatway
 Tags: live chat, chat, customer support, faq, chat plugin
 Requires at least: 3.1
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 Plugin URI: https://chatway.app/
 License: GPLv3
 
@@ -41,6 +41,7 @@ Chatway live chat is a powerful and versatile helpdesk live chat plugin, designe
 
 = 🪄 Use Chatway Live Chat directly from your WordPress admin panel or as a standalone app =
 You can live chat with your website's visitors directly from the Chatway panel, or use Chatway inside your WordPress admin panel. Both options will work well and you can choose the option that will fit you best in providing customer support live chat to your website's visitors.
+When logged-in visitors start a chat with you, their name, email, and profile picture are automatically synced with Chatway live chat, making it easy to see who you're chatting with.
 
 = 👋 Chatway Live Chat & Helpdesk account =
 Once you sign up, a free <a href="https://chatway.app" target="_blank" title="Chatway Live Chat">Chatway live chat</a> account will be created for you, the live chat script will be added to your website, and a click to chat widget will appear on your website. If you log out or remove the plugin, the chat widget will be removed from your website.
@@ -135,14 +136,16 @@ Yes, you can. Your team will be able to respond to live chat tickets once you in
 == Screenshots ==
 
 1. Communicate with your website's visitor through live chat
-2. Add FAQ to your Chatway live chat widget and reduce live chat customer support tickets
-3. Canned responses saved replies for better live chat communication with your website visitors
-4. Download our iOS and Android apps and live chat with your website's visitors on the go
-5. Invite your team as agents so they can live chat with your visitors as well
-6. Full chat history with every person your chat with
-7. Share files with your visitors through live chat
+2. Add FAQ to your Chatway live chat widget and reduce live chat customer support tickets and canned responses saved replies for better live chat communication with your website visitors 
+3. Download our iOS and Android apps and live chat with your website's visitors on the go
+4. Invite your team as agents so they can live chat with your visitors as well
+5. Translate your live chat widget to other languages, and also live chat with your visitors using our live translation feature
+6. Manage live chat, email, and Facebook Messengers chats in one place
 
 == Changelog ==
+
+= 1.2.7 =
+When logged-in visitors start a chat with you, their name, email, and profile picture are automatically synced with Chatway live chat, making it easy to see who you're chatting with
 
 = 1.2.6 =
 FAQ bug fixed
