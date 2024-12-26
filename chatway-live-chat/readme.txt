@@ -2,7 +2,7 @@ Chatway Live Chat - Customer Support, FAQ & Helpdesk Customer Service
 Contributors: galdub, tomeraharon, chatway
 Tags: live chat, chat, customer support, faq, chat plugin
 Requires at least: 3.1
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 Plugin URI: https://chatway.app/
 License: GPLv3
 
@@ -143,6 +143,9 @@ Yes, you can. Your team will be able to respond to live chat tickets once you in
 6. Manage live chat, email, and Facebook Messengers chats in one place
 
 == Changelog ==
+
+= 1.2.8 =
+Support for older WordPress versions
 
 = 1.2.7 =
 When logged-in visitors start a chat with you, their name, email, and profile picture are automatically synced with Chatway live chat, making it easy to see who you're chatting with
