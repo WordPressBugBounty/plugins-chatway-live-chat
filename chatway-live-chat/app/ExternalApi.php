@@ -64,6 +64,59 @@ class ExternalApi {
         return false;
     }
 
+    /**
+     * Checks for the presence of a secret key in the WordPress options.
+     * If the secret key is not found, it generates a new one, sends it to a remote API,
+     * and saves it in the WordPress options if the remote API call is successful.
+     *
+     * @return void
+     */
+    static function check_for_secret_key() {
+        $secret_key = get_option( 'chatway_secret_token', '' );
+        if(empty($secret_key)) {
+            $data = random_bytes(16);
+            $data[6] = chr((ord($data[6]) & 0x0f) | 0x40); // Set the version to 0100 (binary for v4)
+            $data[8] = chr((ord($data[8]) & 0x3f) | 0x80); // Set the variant to 10xx (RFC variant)
+            $secret_key = vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+
+            $payload = [
+                'site_url'  => site_url(),
+                'secret_key'  => $secret_key,
+            ];
+            $token      = get_option( 'chatway_token', '' );
+
+            $response = wp_remote_post(
+                Url::remote_api( "/wordpress-proxy-api-secret" ),
+                [
+                    'redirect' => 'follow',
+                    'headers'  => [
+                        'Accept'        => 'application/json',
+                        'Authorization' => 'Bearer ' . $token
+                    ],
+                    'body'     => $payload
+                ]
+            );
+
+            if(!is_wp_error($response) && 200 === wp_remote_retrieve_response_code( $response )) {
+                $response = json_decode( wp_remote_retrieve_body( $response ), true );
+                if(isset($response['message']) && $response['message'] == 'Success') {
+                    add_option( 'chatway_secret_token', $secret_key );
+                }
+            }
+        }
+    }
+
+    /**
+     * Retrieves the secret key for Chatway.
+     *
+     * This method retrieves the secret key from the WordPress options or fetches it
+     * from the remote API if it is not stored in the local options. If the secret key
+     * is fetched successfully from the API, it will be stored as a WordPress option.
+     *
+     * @return string|false The secret key as a string if found or successfully fetched,
+     *                      or false if no secret key is available.
+     */
+
     static function get_chatway_secret_key() {
         $token      = get_option( 'chatway_token', '' );
         $user_id    = get_option( 'chatway_user_identifier', '' );
@@ -101,6 +154,16 @@ class ExternalApi {
         return false;
     }
 
+    /**
+     * Sends visitor data to mark the visitor as verified.
+     *
+     * @param string $hmac The HMAC string for verification.
+     * @param string $client_id The client identifier.
+     * @param array $client_data The client data to send.
+     * @param string $token The authorization token.
+     *
+     * @return array|false Returns the response code array if successful, or false if an error occurs.
+     */
     static function send_visitor_data($hmac, $client_id, $client_data, $token) {
         $user_id    = get_option( 'chatway_user_identifier', '' );
         if(empty( $user_id ) ) {
@@ -132,5 +195,38 @@ class ExternalApi {
         }
 
         return $response_code;
+    }
+
+    /**
+     * @return int Total count of unread messages or 0 if the request fails or required data is missing
+     */
+    static function get_unread_messages_count()
+    {
+        $token = get_option('chatway_token', '');
+        $user_id = get_option('chatway_user_identifier', '');
+        if( empty( $token ) || empty( $user_id ) ) {
+            return 0;
+        }
+
+        $response = wp_remote_get(
+            Url::remote_api( "/unread-notifications" ),
+            [
+                'redirect' => 'follow',
+                'headers'  => [
+                    'Accept'        => 'application/json',
+                    'Authorization' => 'Bearer ' . $token
+                ],
+            ]
+        );
+
+        $response_code = [];
+        if(!is_wp_error($response) && 200 === wp_remote_retrieve_response_code( $response )) {
+            $response_code = json_decode( wp_remote_retrieve_body( $response ), true );
+        }
+
+        if(isset($response_code['total_unread_count'])) {
+            return $response_code['total_unread_count'];
+        }
+        return 0;
     }
 }

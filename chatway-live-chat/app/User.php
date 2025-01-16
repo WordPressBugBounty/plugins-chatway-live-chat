@@ -75,4 +75,11 @@ class User extends Api
             'message' => 'success',
         ];
     }
+
+    public function get_count() {
+        delete_transient( 'chatway_unread_messages_count' );
+        $count = ExternalApi::get_unread_messages_count();
+        set_transient( 'chatway_unread_messages_count', $count, 5*60 );
+        return ['count' => $count, 'code' => 200];
+    }
 }

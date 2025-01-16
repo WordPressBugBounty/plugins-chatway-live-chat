@@ -57,7 +57,6 @@ abstract class Api
     public function action( \WP_REST_Request $request ) {
         $this->request = $request;
         $action_class  = strtolower( $this->request->get_method() ) . '_' . sanitize_key( $this->request['action'] );
-
         if ( method_exists( $this, $action_class ) ) {
             return $this->{$action_class}();
         }

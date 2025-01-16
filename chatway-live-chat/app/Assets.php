@@ -13,7 +13,6 @@ class Assets {
     
     public function __construct() {
         add_action( 'admin_enqueue_scripts', [$this, 'enqueue_admin_assets'] );
-
         add_action( 'wp_enqueue_scripts', [$this, 'enqueue_chatway'] );
     }
 
@@ -94,6 +93,7 @@ class Assets {
                     "termsOfService"   => Url::terms_of_service(),
                     "privacyPolicy"    => Url::privacy_policy(),
                     'token'            => get_option( 'chatway_token', '' ),
+                    'siteUrl'          => get_site_url(),
                 ] 
             );
         } 
