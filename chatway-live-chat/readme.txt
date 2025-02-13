@@ -1,8 +1,8 @@
 Chatway Live Chat – Customer Support, FAQ & Helpdesk Customer Service, Chat Buttons, and WhatsApp
-Contributors: galdub, tomeraharon, chatway
+Contributors: chatway, galdub, tomeraharon
 Tags: live chat, chat, WhatsApp, customer support, faq
 Requires at least: 3.1
-Stable tag: 1.3
+Stable tag: 1.3.1
 Plugin URI: https://chatway.app/
 License: GPLv3
 
@@ -32,7 +32,7 @@ Chatway live chat is a powerful and versatile helpdesk live chat plugin, designe
 - Show FAQ and reduce customer support live chat tickets
 - Provide easy content and file sharing within chat for improved helpdesk live chat customer support
 - Allow you to monitor chats with support agents in a single click
-- Add chat buttons like WhatsApp, Instagram, Facebook Messenger, SMS, Telegram, Phone, Line, and custom links
+- Add chat buttons like WhatsApp, Instagram, Facebook Messenger, SMS, Telegram, Phone, Line, Email, TikTok, WeChat, Discord, Google Maps, Waze, and custom links
 - Pending messages icon for incoming live chat messages even when the Chatway live chat plugin isn't launched
 - Let you see the conversation history and get the full picture before responding
 - Offer proactive live chat customer assistance that’ll rival your competitors
@@ -51,7 +51,7 @@ You can choose the Free plan for basic live chat features, or upgrade to the Pro
 <a href="https://chatway.app/pricing/?utm_source=wplisting" target="_blank" title="Chatway Live Chat pricing">Check out Chatway's Live Chat pricing ⭐</a>
 
 = ❓ Add FAQ to reduce customer support chat tickets =
-Our WordPress live chat plugin includes an enhanced FAQ feature to reduce customer support tickets. With this FAQ integration, users can access instant answers within the live chat, addressing common questions without needing support. This customizable FAQ tool helps reduce ticket volume and improve customer satisfaction. By providing relevant information directly in the live chat, users resolve their issues faster, making support more efficient and streamlined
+Our WordPress live chat plugin includes an enhanced FAQ feature to reduce customer support tickets. With the FAQ feature, users can access instant answers within the live chat, addressing common questions without needing support. This customizable FAQ tool helps reduce ticket volume and improve customer satisfaction. By providing relevant information directly in the live chat, users resolve their issues faster, making support more efficient and streamlined
 
 = 📱 Live Chat Anywhere Using Our Native Mobile Apps for iOS & Android =
 Besides our robust web live chat app, Chatway's iOS and Android apps allow users to engage with website visitors while on the go. This mobile application offers real-time communication and convenience, enabling timely responses and stronger connections with the audience. Download the app now to stay connected and chat with visitors wherever you are.
@@ -59,7 +59,7 @@ Besides our robust web live chat app, Chatway's iOS and Android apps allow users
 <a href="https://play.google.com/store/apps/details?id=com.chatway.mobile" target="_blank" title="Chatway for Android">Download Chatway for Android 🔗</a>
 
 = 🚀 Add chat buttons like WhatsApp, Messenger, and more =
-With Chatway Live Chat, add chat buttons for WhatsApp, SMS, Instagram DM, Facebook Messenger, Telegram, Line, click-to-call, and even create your own custom chat buttons. For example, add a WhatsApp chat button so users can chat with you through WhatsApp or their favorite chat channel.
+With Chatway Live Chat, add chat buttons for WhatsApp, SMS, Instagram DM, Facebook Messenger, Telegram, Line, click-to-call, Email, TikTok, WeChat, Discord, Google Maps, Waze, and even create your own custom chat buttons. For example, add a WhatsApp chat button so users can chat with you through WhatsApp or their favorite chat channel.
 
 = 💾 Canned responses saved replies for commonly asked questions =
 Enhance your customer support efficiency with canned responses saved replies to common queries. This feature allows customer support chat agents to swiftly select and send standard responses, ensuring quick and consistent communication. No more typing the same message repeatedly—save time and reduce errors with our customizable canned responses feature.
@@ -144,11 +144,14 @@ Yes, you can. Your team will be able to respond to live chat tickets once you in
 2. Add FAQ to your Chatway live chat widget and reduce live chat customer support tickets and canned responses saved replies for better live chat communication with your website visitors 
 3. Download our iOS and Android apps and live chat with your website's visitors on the go
 4. Invite your team as agents so they can live chat with your visitors as well
-5. Social chat buttons like WhatsApp, Facebook Messenger, Instagram, SMS text, Telegram, click to call, Line, and any custom link
+5. Social chat buttons like WhatsApp, Facebook Messenger, Instagram, SMS text, Telegram, click to call, Line, Email, TikTok, WeChat, Discord, Google Maps, Waze, and any custom link
 6. Translate your live chat widget to other languages, and also live chat with your visitors using our live translation feature
 7. Manage live chat, email, and Facebook Messengers chats in one place
 
 == Changelog ==
+
+= 1.3.1 = 
+Improved compatibility of Chatway live chat plugin with cache plugins 
 
 = 1.3 =
 After this update you'll see a pending messages icon for new live chat messages even when the Chatway live chat plugin is launched. E.g. while adding products to your WooCommerce store you can see that there are live chat messages waiting for you.
