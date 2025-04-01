@@ -44,11 +44,6 @@ class Base {
          * It gets removed as soon as it's called for the first time.
          * Ussage at : plugin_redirect, and called with admin_init
          */
-
-        if(function_exists('chatway_clear_all_caches'))   {
-            chatway_clear_all_caches();
-        }
-
         if ( ! defined( "DOING_AJAX" ) ) {
             add_option( 'chatway_redirection', true );
         }
@@ -56,10 +51,7 @@ class Base {
     }
 
     public function deactivate() {
-        if(function_exists('chatway_clear_all_caches'))   {
-            chatway_clear_all_caches();
-        }
-
-        delete_option( 'chatway_redirection' );
+        ExternalApi::sync_wp_plugin_version(\Chatway::is_woocomerce_active(), 0);
+        User::clear_chatway_keys();
     }
 }

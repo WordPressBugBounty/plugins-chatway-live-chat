@@ -3,7 +3,7 @@
  * Plugin Name:       Chatway Live Chat
  * Contributors:      chatway, galdub, tomeraharon
  * Description:       Chatway is a live chat app. Use Chatway to chat with your website's visitors.
- * Version:           1.3.2
+ * Version:           1.3.3
  * Tested up to:      6.8
  * Author:            Chatway Live Chat
  * Author URI:        https://chatway.app/
@@ -29,7 +29,25 @@ class Chatway {
      * 4. readme.txt Stable tag
      */ 
     public static function version() {
-        return '1.3.2';
+        return '1.3.3';
+    }
+
+    /**
+     * Checks if the WooCommerce plugin is active.
+     *
+     * Determines whether the WooCommerce plugin is installed, activated, and its related
+     * class is loaded in the current WordPress environment.
+     *
+     * @return bool True if WooCommerce is active, otherwise false.
+     */
+    public static function is_woocomerce_active() {
+        if (!function_exists( 'is_plugin_active' ) ) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        }
+        if(is_plugin_active('woocommerce/woocommerce.php') && class_exists('WooCommerce')) {
+            return 1;
+        }
+        return 0;
     }
 
     public function boot() {
@@ -38,6 +56,7 @@ class Chatway {
         new Chatway\App\Front();
         new Chatway\App\View();
         new Chatway\App\User();
+        new Chatway\App\ChatwayApi();
     }
 
     private function add_textdomain() {
@@ -97,20 +116,15 @@ $loader->add_namespace( 'Chatway\App', Chatway::require( 'app', true ) );
 /**
  * Register the activation and deactivation hook 
  */ 
-$base = new Chatway\App\Base();
-register_activation_hook( __FILE__, [ $base, 'activate' ] );
-register_deactivation_hook( __FILE__, [ $base, 'deactivate' ] );
+$chatwayBase = new Chatway\App\Base();
+register_activation_hook( __FILE__, [ $chatwayBase, 'activate' ] );
+register_deactivation_hook( __FILE__, [ $chatwayBase, 'deactivate' ] );
 
 
 /**
  * Register the uninstall hook 
  */
 if( ! function_exists( 'chatway_uninstall_hook' ) ) {
-
-    if(function_exists('chatway_clear_all_caches'))   {
-        chatway_clear_all_caches();
-    }
-
     function chatway_uninstall_hook() {
       ExternalApi::update_plugins_status( 'uninstall' );
     }

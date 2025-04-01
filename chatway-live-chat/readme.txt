@@ -2,7 +2,7 @@ Chatway Live Chat – Customer Support, FAQ & Helpdesk Customer Service, Chat Bu
 Contributors: chatway, galdub, tomeraharon
 Tags: live chat, chat, WhatsApp, customer support, faq
 Requires at least: 3.1
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 Plugin URI: https://chatway.app/
 License: GPLv3
 
@@ -59,6 +59,9 @@ Our WordPress live chat plugin includes an enhanced FAQ feature to reduce custom
 Besides our robust web live chat app, Chatway's iOS and Android apps allow users to engage with website visitors while on the go. This mobile application offers real-time communication and convenience, enabling timely responses and stronger connections with the audience. Download the app now to stay connected and chat with visitors wherever you are.
 <a href="https://apps.apple.com/us/app/chatway-website-live-chat/id6449775006" target="_blank" title="Chatway for iOS">Download Chatway for iOS 🔗</a>
 <a href="https://play.google.com/store/apps/details?id=com.chatway.mobile" target="_blank" title="Chatway for Android">Download Chatway for Android 🔗</a>
+
+= 🛒 Deep WooCommerce integration: Instant Access to WooCommerce Visitors' Cart & Orders data and WooCommerce Store Data =
+Chatway live chat now gives you instant access to key visitor and store data directly inside the chat window, making personalized, real-time support effortless. Instantly view order history, including purchased items and total order value, without asking for order numbers or switching tabs. See what's in their cart, including total items and value, so you can guide them to checkout, recommend products, or recover abandoned carts. Plus, easily share clickable product links, suggest categories, and send active coupon codes — all within the chat.
 
 = 🚀 Add chat buttons like WhatsApp, Messenger, and more =
 With Chatway Live Chat, add chat buttons for WhatsApp, SMS, Instagram DM, Facebook Messenger, Telegram, Line, click-to-call, Email, TikTok, WeChat, Discord, Google Maps, Waze, and even create your own custom chat buttons. For example, add a WhatsApp chat button so users can chat with you through WhatsApp or their favorite chat channel.
@@ -148,12 +151,17 @@ Yes, you can. Your team will be able to respond to live chat tickets once you in
 1. Communicate with your website's visitor through live chat
 2. Add FAQ to your Chatway live chat widget and reduce live chat customer support tickets and canned responses saved replies for better live chat communication with your website visitors 
 3. Download our iOS and Android apps and live chat with your website's visitors on the go
-4. Invite your team as agents so they can live chat with your visitors as well
-5. Social chat buttons like WhatsApp, Facebook Messenger, Instagram, SMS text, Telegram, click to call, Line, Email, TikTok, WeChat, Discord, Google Maps, Waze, and any custom link
-6. Translate your live chat widget to other languages, and also live chat with your visitors using our live translation feature
-7. Manage live chat, email, and Facebook Messengers chats in one place
+4. Get WooCommerce data about your visitors including their current cart and orders. You can also share WooCommerce data like products, coupons, etc.
+5. Invite your team as agents so they can live chat with your visitors as well
+6. Social chat buttons like WhatsApp, Facebook Messenger, Instagram, SMS text, Telegram, click to call, Line, Email, TikTok, WeChat, Discord, Google Maps, Waze, and any custom link
+7. Translate your live chat widget to other languages, and also live chat with your visitors using our live translation feature
+8. Manage live chat, email, and Facebook Messengers chats in one place
 
 == Changelog ==
+
+= 1.3.3 = 
+Deep WooCommerce integration. Get instant access to WooCommerce visitors' cart & orders data and WooCommerce store data.
+Get instant access to key visitor and store data directly inside the chat window, making personalized, real-time support effortless. Instantly view order history, including purchased items and total order value, without asking for order numbers or switching tabs. See what's in their cart, including total items and value, so you can guide them to checkout, recommend products, or recover abandoned carts. Plus, easily share clickable product links, suggest categories, and send active coupon codes — all within the chat
 
 = 1.3.2 = 
 Fixed mobile live chat conversation screen bug related to the "Send" button

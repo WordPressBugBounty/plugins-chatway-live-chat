@@ -38,9 +38,7 @@ class User extends Api
         }
 
         // delete all data
-        delete_option( 'chatway_user_identifier' );
-        delete_option( 'chatway_user_cache_identifier' );
-        delete_option( 'chatway_token' );
+        User::clear_chatway_keys();
 
         if ( ! empty( $user_identifier ) && ! empty( $token ) ) {
             // save user identifier and token to DB
@@ -67,19 +65,39 @@ class User extends Api
      * Remote everything related to the current user from DB
      */ 
     public function get_logout() {
-        delete_option( 'chatway_user_identifier' );
-        delete_option( 'chatway_token' );
-
+        ExternalApi::sync_wp_plugin_version(\Chatway::is_woocomerce_active(), 0);
+        User::clear_chatway_keys();
+        chatway_clear_all_caches();
         return [
             'code'    => 200,
             'message' => 'success',
         ];
     }
 
+    /**
+     * Retrieves the unread messages count from an external API and caches it as a transient.
+     *
+     * @return array An associative array containing the count of unread messages ('count') and a status code ('code').
+     */
     public function get_count() {
         delete_transient( 'chatway_unread_messages_count' );
         $count = ExternalApi::get_unread_messages_count();
         set_transient( 'chatway_unread_messages_count', $count, 5*60 );
         return ['count' => $count, 'code' => 200];
+    }
+
+    /**
+     * Removes all Chatway-related options from the WordPress options table.
+     *
+     * @return void
+     * Method does not return any value.
+     */
+    static function clear_chatway_keys() {
+        delete_option( 'chatway_redirection' );
+        delete_option( 'chatway_user_identifier' );
+        delete_option( 'chatway_api_secret_license_key' );
+        delete_option( 'chatway_token' );
+        delete_option( 'chatway_wp_plugin_version' );
+        delete_option( 'chatway_secret_key' );
     }
 }

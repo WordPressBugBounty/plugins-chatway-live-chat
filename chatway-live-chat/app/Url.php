@@ -11,7 +11,7 @@ namespace Chatway\App;
 class Url {
     use Singleton;
 
-    public static $environment = 'prod'; // dev | prod
+    public static $environment = 'prod'; // dev | prod | local
 
     private static function base_url( $key, $endpoint ) {
         $urls = [];
@@ -19,11 +19,12 @@ class Url {
             $urls = [
                 'api' => 'https://dev-api.chatway.app/api',
                 'app' => 'https://dev-go.chatway.app',
+//                'app' => 'http://localhost:3300',
                 'widget' => 'https://dev-cdn.chatway.app'
             ];
         } else {
             $urls = [
-                'api' => 'https://api.chatway.app/api',
+                'api' => 'https://prod-api.chatway.app/api',
                 'app' => 'https://go.chatway.app',
                 'widget' => 'https://cdn.chatway.app'
             ];

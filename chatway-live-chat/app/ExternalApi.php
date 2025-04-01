@@ -10,10 +10,12 @@ namespace Chatway\App;
 
 class ExternalApi {
     use Singleton;
-    
+
     /**
-     * @return 'invalid' | 'server-down' | 'valid'
-     */ 
+     * Checks the status of a token by making a request to a remote API.
+     *
+     * @return string Returns 'valid' if the token is valid, 'server-down' if the server is unreachable, or 'invalid' for other cases.
+     */
     static function get_token_status() {
         $token    = get_option( 'chatway_token', '' );
         $response = wp_remote_get( 
@@ -29,6 +31,10 @@ class ExternalApi {
 
         $response_code = wp_remote_retrieve_response_code( $response );
 
+        if( 200 == $response_code ) {
+            self::sync_wp_plugin_version();
+        }
+
         if ( 200 === $response_code ) return 'valid';
         if ( 521 === $response_code ) return 'server-down';
 
@@ -41,12 +47,13 @@ class ExternalApi {
      * @return boolean
      */
     static function update_plugins_status( $status = 'install' ) {
+
         $token      = get_option( 'chatway_token', '' );
         $user_id    = get_option( 'chatway_user_identifier', '' );
         
         if( empty( $token ) || empty( $user_id ) ) return false;
 
-        $response = wp_remote_post( 
+        $response = wp_remote_post(
             Url::remote_api( "/wordpress/" . $status ), 
             [
                 'redirect' => 'follow',
@@ -71,8 +78,8 @@ class ExternalApi {
      *
      * @return void
      */
-    static function check_for_secret_key() {
-        $secret_key = get_option( 'chatway_secret_token', '' );
+    static function sync_chatway_sercet_key() {
+        $secret_key = get_option( 'chatway_api_secret_license_key', '' );
         if(empty($secret_key)) {
             $data = random_bytes(16);
             $data[6] = chr((ord($data[6]) & 0x0f) | 0x40); // Set the version to 0100 (binary for v4)
@@ -96,11 +103,10 @@ class ExternalApi {
                     'body'     => $payload
                 ]
             );
-
             if(!is_wp_error($response) && 200 === wp_remote_retrieve_response_code( $response )) {
                 $response = json_decode( wp_remote_retrieve_body( $response ), true );
                 if(isset($response['message']) && $response['message'] == 'Success') {
-                    add_option( 'chatway_secret_token', $secret_key );
+                    add_option( 'chatway_api_secret_license_key', $secret_key );
                 }
             }
         }
@@ -116,7 +122,6 @@ class ExternalApi {
      * @return string|false The secret key as a string if found or successfully fetched,
      *                      or false if no secret key is available.
      */
-
     static function get_chatway_secret_key() {
         $token      = get_option( 'chatway_token', '' );
         $user_id    = get_option( 'chatway_user_identifier', '' );
@@ -124,10 +129,9 @@ class ExternalApi {
         if( empty( $token ) || empty( $user_id ) ) {
             return false;
         }
-
         $secret_key    = get_option( 'chatway_secret_key', '' );
         if(!empty($secret_key)) {
-            return $secret_key;
+             return $secret_key;
         }
 
         $response = wp_remote_get(
@@ -171,22 +175,22 @@ class ExternalApi {
         }
 
         $payload = [
-            'visitor'   => [
+            'visitor'       => [
                 'hmac'  => $hmac,
                 'data'  => $client_data,
             ]
         ];
 
+        $request = [
+            'redirect' => 'follow',
+            'headers'  => [
+                'Accept'        => 'application/json',
+                'Authorization' => 'Bearer ' . $token
+            ],
+            'body'     => $payload
+        ];
         $response = wp_remote_post(
-            Url::remote_api( "/chat-contacts/{$client_id}/mark-as-verified" ),
-            [
-                'redirect' => 'follow',
-                'headers'  => [
-                    'Accept'        => 'application/json',
-                    'Authorization' => 'Bearer ' . $token
-                ],
-                'body'     => $payload
-            ]
+            Url::remote_api( "/chat-contacts/{$client_id}/mark-as-verified" ), $request
         );
 
         $response_code = [];
@@ -198,12 +202,49 @@ class ExternalApi {
     }
 
     /**
-     * @return int Total count of unread messages or 0 if the request fails or required data is missing
+     * Sends cart data to a remote API endpoint associated with a specific client.
+     *
+     * @param string $client_id The unique identifier of the client.
+     * @param array $client_data The cart data to be sent to the remote API.
+     * @param string $token The authentication token used for API authorization.
+     *
+     * @return array|bool Returns an array containing the API response on success, or false if the user identifier is not set.
+     */
+    static function send_cart_data($client_id, $client_data, $token) {
+        $user_id    = get_option( 'chatway_user_identifier', '' );
+        if(empty( $user_id ) ) {
+            return false;
+        }
+
+        $payload = [
+            'cart_data'   => $client_data
+        ];
+        $request = [
+            'redirect' => 'follow',
+            'headers'  => [
+                'Accept'        => 'application/json',
+                'Authorization' => 'Bearer ' . $token
+            ],
+            'body'     => $payload
+        ];
+        $response = wp_remote_post(Url::remote_api( "/pixel/chat-contacts/{$client_id}/cart-info" ), $request);
+
+        $response_code = [];
+        if(!is_wp_error($response) && 200 === wp_remote_retrieve_response_code( $response )) {
+            $response_code = json_decode( wp_remote_retrieve_body( $response ), true );
+        }
+
+        return $response_code;
+    }
+
+    /**
+     * @return int The total count of unread messages. Returns 0 if the token or user identifier is missing,
+     *             or if the API response is invalid or does not contain the unread count.
      */
     static function get_unread_messages_count()
     {
-        $token = get_option('chatway_token', '');
-        $user_id = get_option('chatway_user_identifier', '');
+        $token      = get_option('chatway_token', '');
+        $user_id    = get_option('chatway_user_identifier', '');
         if( empty( $token ) || empty( $user_id ) ) {
             return 0;
         }
@@ -228,5 +269,51 @@ class ExternalApi {
             return $response_code['total_unread_count'];
         }
         return 0;
+    }
+
+
+    /**
+     * Synchronizes the WordPress plugin version with the remote API.
+     *
+     * This method sends the site URL and the current plugin version to a remote API for synchronization.
+     * If the synchronization is successful, the plugin version is updated in the WordPress options.
+     *
+     * @return void The method does not return any value.
+     */
+    public static function sync_wp_plugin_version($status = '', $chatway_status = 1) {
+        $token      = get_option('chatway_token', '');
+        $user_id    = get_option('chatway_user_identifier', '');
+        if (!empty($token) && !empty($user_id)) {
+            if($status == 'activated') {
+                $status = 1;
+            } else if ($status == 'deactivated') {
+                $status = 0;
+            } else {
+                $status = \Chatway::is_woocomerce_active();
+            }
+            $request = [
+                'redirect' => 'follow',
+                'headers'  => [
+                    'Accept'        => 'application/json',
+                    'Authorization' => 'Bearer ' . $token
+                ],
+                'body'     => [
+                    'site_url'  => site_url(),
+                    'version'  => \Chatway::version(),
+                    'is_woocommerce_installed' => $status,
+                    'is_active_install' => $chatway_status
+                ]
+            ];
+            $response = wp_remote_post(Url::remote_api( "/sync-wp-plugin-version" ), $request);
+            if(!is_wp_error($response) && 200 === wp_remote_retrieve_response_code( $response )) {
+                $response_code = json_decode( wp_remote_retrieve_body( $response ), true );
+            }
+
+            if(isset($response_code['message']) && $response_code['message'] == 'Success') {
+                update_option('chatway_wp_plugin_version', \Chatway::version());
+            }
+
+            self::sync_chatway_sercet_key();
+        }
     }
 }
