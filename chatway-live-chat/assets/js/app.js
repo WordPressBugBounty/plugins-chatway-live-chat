@@ -340,7 +340,7 @@ to {
     @media (max-width: 1080px) {
         transform: scale(0.8);
     }
-`,Zo=[window.chatway.images+"client-logo/2.svg",window.chatway.images+"client-logo/1.svg?v1",window.chatway.images+"client-logo/3.svg",window.chatway.images+"client-logo/4.svg"];function Qo(){return(0,e.jsxs)(Ko,{children:[(0,e.jsx)(ir,{sx:{color:"#B8B9BD",fontSize:"12px",fontWeight:600,lineHeight:"16px",paddingBottom:"16px"},children:"TRUSTED BY BUSINESSES"}),(0,e.jsx)(Jo,{children:Zo.map(((t,n)=>(0,e.jsx)(Go,{src:t,loading:"lazy",draggable:!1},n)))})]})}const ei=tr.aside`
+`,Zo=[window.chatway.images+"client-logo/2.svg",window.chatway.images+"client-logo/1.svg?v1",window.chatway.images+"client-logo/3.svg",window.chatway.images+"client-logo/4.svg"];function Qo(){return(0,e.jsxs)(Ko,{children:[(0,e.jsxs)(ir,{sx:{color:"#B8B9BD",fontSize:"12px",fontWeight:400,lineHeight:"16px",paddingBottom:"16px"},children:["Trusted by"," ",(0,e.jsx)("strong",{style:{color:"#ffffffd4"},children:"40,000+"})," ","Businesses Worldwide 🚀"]}),(0,e.jsx)(Jo,{children:Zo.map(((t,n)=>(0,e.jsx)(Go,{src:t,loading:"lazy",draggable:!1},n)))})]})}const ei=tr.aside`
     background-color: #282d3e;
     min-height: 500px;
     position: relative;

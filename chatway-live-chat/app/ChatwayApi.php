@@ -8,6 +8,8 @@
 
 namespace Chatway\App;
 
+use \WC_Coupon;
+
 class ChatwayApi
 {
     use Singleton;
@@ -86,7 +88,7 @@ class ChatwayApi
 
         if(isset($_GET['token']) && !empty($_GET['token']) && isset($_GET['chatway_action']) && !empty($_GET['chatway_action'])) {
             $chatway_action = sanitize_text_field(filter_input(INPUT_GET, 'chatway_action'));
-            if(in_array($chatway_action, ['products', 'categories', 'orders', 'coupons']) && $this->validate_token()) {
+            if(\Chatway::is_woocomerce_active() && in_array($chatway_action, ['products', 'categories', 'orders', 'coupons']) && $this->validate_token()) {
                 if($chatway_action == 'products') {
                     $this->fetch_products();
                 } else if($chatway_action == 'categories') {
@@ -252,6 +254,9 @@ class ChatwayApi
         if ( ! class_exists( 'WooCommerce', false ) ) {
             include_once dirname( WC_PLUGIN_FILE ) . '/includes/class-woocommerce.php';
         }
+        if ( ! class_exists( 'WC_Coupon', false ) ) {
+            include_once dirname( WC_PLUGIN_FILE ) . '/includes/class-wc-coupon.php';
+        }
         if(class_exists('WC_Product_Query')) {
             $search = sanitize_text_field(filter_input(INPUT_GET, 's'));
             $coupons = [];
@@ -265,17 +270,73 @@ class ChatwayApi
             }
             $records = get_posts($args);
             foreach ($records as $record) {
-                if(!empty($record->post_title)) {
+                $couponObj = new \WC_Coupon( $record->ID );
+                if($couponObj->get_id()) {
                     $coupon = [];
-                    $coupon['coupon_id'] = strval($record->ID);
-                    $coupon['coupon_code'] = $record->post_title;
-                    $coupon['description'] = $record->post_content;
-                    $coupon['discount_type'] = get_post_meta($record->ID, 'discount_type', true);;
-                    $coupon['coupon_amount'] = get_post_meta($record->ID, 'coupon_amount', true);;
-                    $expiry_date = get_post_meta($record->ID, 'date_expires', true);
+                    $coupon['coupon_id'] = strval($couponObj->get_id());
+                    $coupon['coupon_code'] = $couponObj->get_code();
+                    $coupon['description'] = $couponObj->get_description();
+                    $coupon['discount_type'] = $couponObj->get_discount_type();
+                    $coupon['coupon_amount'] = $couponObj->get_amount();
+                    $coupon['usage_limit'] = $couponObj->get_usage_limit();
+                    $coupon['usage_count'] = $couponObj->get_usage_count();
+                    $coupon['free_shipping'] = $couponObj->get_free_shipping();
+                    $coupon['minimum_amount'] = $couponObj->get_minimum_amount();
+                    $coupon['maximum_amount'] = $couponObj->get_maximum_amount();
+                    $product_ids = $couponObj->get_product_ids();
+                    $coupon['products'] = [];
+                    $expiry_date = $couponObj->get_date_expires();
+                    $coupon['timezone'] = '';
                     $coupon['expiry_date'] = '';
-                    if ($expiry_date) {
-                        $coupon['expiry_date'] = date('Y-m-d', intval($expiry_date));
+                    if($expiry_date) {
+                        $coupon['expiry_date'] = $expiry_date->format('Y-m-d H:i:s');
+                        $coupon['timezone'] = $expiry_date->getTimezone()->getName();
+                    }
+                    if(!empty($product_ids)) {
+                        foreach ($product_ids as $id) {
+                            $product = get_post($id);
+                            $coupon['products'][] = [
+                                'id'        => $product->ID,
+                                'title'     => $product->post_title,
+                                'url'       => get_permalink($product->ID),
+                            ];
+                        }
+                    }
+                    $product_ids = $couponObj->get_excluded_product_ids();
+                    $coupon['excluded_products'] = [];
+                    if(!empty($product_ids)) {
+                        foreach ($product_ids as $id) {
+                            $product = get_post($id);
+                            $coupon['excluded_products'][] = [
+                                'id'        => $product->ID,
+                                'title'     => $product->post_title,
+                                'url'       => get_permalink($product->ID),
+                            ];
+                        }
+                    }
+                    $categories = $couponObj->get_product_categories();
+                    $coupon['categories'] = [];
+                    if(!empty($categories)) {
+                        foreach ($categories as $id) {
+                            $term = get_term($id);
+                            $coupon['categories'][] = [
+                                'id'  => $term->term_id,
+                                'name'  => $term->name,
+                                'url'   => get_term_link((int)$id, 'product_cat')
+                            ];
+                        }
+                    }
+                    $categories = $couponObj->get_excluded_product_categories();
+                    $coupon['excluded_categories'] = [];
+                    if(!empty($categories)) {
+                        foreach ($categories as $id) {
+                            $term = get_term($id);
+                            $coupon['excluded_categories'][] = [
+                                'id'  => $term->term_id,
+                                'name'  => $term->name,
+                                'url'   => get_term_link((int)$id, 'product_cat')
+                            ];
+                        }
                     }
                     $coupons[] = $coupon;
                 }

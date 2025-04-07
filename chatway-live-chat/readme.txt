@@ -2,7 +2,7 @@ Chatway Live Chat – Customer Support, FAQ & Helpdesk Customer Service, Chat Bu
 Contributors: chatway, galdub, tomeraharon
 Tags: live chat, chat, WhatsApp, customer support, faq
 Requires at least: 3.1
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 Plugin URI: https://chatway.app/
 License: GPLv3
 
@@ -158,6 +158,9 @@ Yes, you can. Your team will be able to respond to live chat tickets once you in
 8. Manage live chat, email, and Facebook Messengers chats in one place
 
 == Changelog ==
+
+= 1.3.4 = 
+Chatway live chat WooCommerce integration improvements 
 
 = 1.3.3 = 
 Deep WooCommerce integration. Get instant access to WooCommerce visitors' cart & orders data and WooCommerce store data.

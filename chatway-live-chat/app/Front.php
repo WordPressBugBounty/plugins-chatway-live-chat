@@ -196,6 +196,7 @@ class Front
             $cart_contents = WC()->cart->get_cart();
             $products = [];
             foreach ($cart_contents as $cart_item) {
+                $productData = wc_get_product($cart_item['product_id']);
                 $product = [];
                 $product['product_id'] = intval($cart_item['product_id']);
                 $product['product_url'] = get_permalink($cart_item['product_id']);
@@ -205,6 +206,8 @@ class Front
                 $product['total'] = (float)($cart_item['data']->get_price() * $cart_item['quantity']);
                 $product['product_name'] = $cart_item['data']->get_name();
                 $product['price'] = (float)$cart_item['data']->get_price();
+                $product['short_description'] = $productData->get_short_description();
+                $product['sku'] = $productData->get_sku();
                 $product['image'] = '';
                 $product['thumb_image'] = '';
                 $thumbnail_url = get_the_post_thumbnail_url($cart_item['product_id'], 'full');
