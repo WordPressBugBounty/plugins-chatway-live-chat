@@ -32,8 +32,7 @@ class User extends Api
         $token           = sanitize_text_field( isset( $params['token'] ) ? $params['token'] : '' );
         
         // clear the cache of the user is new
-        $old_identifier = get_option( 'chatway_user_cache_identifier' );
-        if ( $old_identifier != $user_identifier ) {
+        if (function_exists('chatway_clear_all_caches')) {
             chatway_clear_all_caches();
         }
 
@@ -67,7 +66,9 @@ class User extends Api
     public function get_logout() {
         ExternalApi::sync_wp_plugin_version(\Chatway::is_woocomerce_active(), 0);
         User::clear_chatway_keys();
-        chatway_clear_all_caches();
+        if (function_exists('chatway_clear_all_caches')) {
+            chatway_clear_all_caches();
+        }
         return [
             'code'    => 200,
             'message' => 'success',
