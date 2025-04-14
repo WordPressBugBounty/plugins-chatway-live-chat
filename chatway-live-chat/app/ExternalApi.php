@@ -305,6 +305,7 @@ class ExternalApi {
                 ]
             ];
             $response = wp_remote_post(Url::remote_api( "/sync-wp-plugin-version" ), $request);
+            $response_code = [];
             if(!is_wp_error($response) && 200 === wp_remote_retrieve_response_code( $response )) {
                 $response_code = json_decode( wp_remote_retrieve_body( $response ), true );
             }

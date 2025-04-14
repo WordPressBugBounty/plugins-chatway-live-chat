@@ -61,7 +61,7 @@ class ChatwayApi
             // Check if this includes the Chatway plugin
             if (!empty($updated_plugins)) {
                 foreach ($updated_plugins as $plugin) {
-                    if ($plugin === 'chatway-live-chat/chatway.php') {
+                    if (strpos($plugin, 'chatway-live-chat/chatway.php') !== false) {
                         ExternalApi::sync_wp_plugin_version();
                     }
                 }

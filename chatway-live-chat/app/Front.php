@@ -32,6 +32,10 @@ class Front
      * @return void
      */
     public function check_for_conversation() {
+        $token = sanitize_text_field(filter_input(INPUT_GET, 'token'));
+        if (empty($token) || !wp_verify_nonce($token, 'chatway_nonce')) {
+            return;
+        }
         $this->update_cart_data();
         $user_id = get_current_user_id();
         if(!empty($user_id)) {

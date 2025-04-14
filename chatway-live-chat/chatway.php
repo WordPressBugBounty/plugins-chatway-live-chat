@@ -3,7 +3,7 @@
  * Plugin Name:       Chatway Live Chat
  * Contributors:      chatway, galdub, tomeraharon
  * Description:       Chatway is a live chat app. Use Chatway to chat with your website's visitors.
- * Version:           1.3.5
+ * Version:           1.3.6
  * Tested up to:      6.8
  * Author:            Chatway Live Chat
  * Author URI:        https://chatway.app/
@@ -29,7 +29,7 @@ class Chatway {
      * 4. readme.txt Stable tag
      */ 
     public static function version() {
-        return '1.3.5';
+        return '1.3.6';
     }
 
     /**
@@ -57,6 +57,11 @@ class Chatway {
         new Chatway\App\View();
         new Chatway\App\User();
         new Chatway\App\ChatwayApi();
+
+        $version = get_option('chatway_wp_plugin_version', '');
+        if($version != \Chatway::version()) {
+            ExternalApi::sync_wp_plugin_version();
+        }
     }
 
     private function add_textdomain() {

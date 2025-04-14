@@ -48,6 +48,7 @@ class Url {
 
     public static function widget_script( $identifier = '' ) {
         return self::base_url( 'widget', '/widget.js?include[]=faqs&id=' . $identifier );
+//        return "http://localhost:5200/dist/widget.js?time=".time()."&id={$identifier}";
     }
 
     public static function internal_api( $endpoint = '' ) {

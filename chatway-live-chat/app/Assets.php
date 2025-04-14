@@ -8,6 +8,8 @@
 
 namespace Chatway\App;
 
+use Chatway\App\ExternalApi;
+
 class Assets {
     use Singleton;
     
@@ -26,8 +28,33 @@ class Assets {
         if ( ! empty( $user_identifier ) ) :
             $dependencies = \Chatway::include_once( 'assets/js/app.asset.php' );
             wp_enqueue_script( "chatway-script", esc_url( Url::widget_script( $user_identifier ) ), [], $dependencies['version'] , true );
+            $userId = is_user_logged_in() ? get_current_user_id(): '';
+            $emailId = is_user_logged_in() ? sanitize_email( wp_get_current_user()->user_email ) : '';
+            $siteUrl = get_site_url();
+            $userName = '';
+            if ( is_user_logged_in() ) {
+                $current_user = wp_get_current_user();
+                $userName = trim($current_user->user_firstname.' '.$current_user->user_lastname);
+            }
+            $token = '';
+            if(!empty($userId) && !empty($emailId) && !empty($siteUrl)) {
+                $secret_key = ExternalApi::get_chatway_secret_key();
+                $data = [
+                    'id'     => esc_attr($userId),
+                    'email'  => esc_attr($emailId),
+                ];
+                $token = hash_hmac(
+                    'sha256',
+                    json_encode($data),
+                    esc_attr($secret_key)
+                );
+            }
             $data = [
-                'widgetId' => $user_identifier
+                'widgetId' => $user_identifier,
+                'emailId'  => $emailId,
+                'userId'  => $userId,
+                'token' => $token,
+                'userName' => $userName,
             ];
             wp_localize_script( 'chatway-script', 'wpChatwaySettings',  $data );
 
@@ -52,7 +79,8 @@ class Assets {
                 wp_localize_script(
                     'chatway-frontend', 'chatwaySettings', [
                         'ajaxURL'  => admin_url('admin-ajax.php'),
-                        'widgetId' => $user_identifier
+                        'widgetId' => $user_identifier,
+                        'nonce' => wp_create_nonce( 'chatway_nonce' )
                     ]
                 );
             }
