@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Chatway Live Chat 1.3.6\n"
+"Project-Id-Version: Chatway Live Chat 1.3.7\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wordpress-chatway-plugin\n"
-"POT-Creation-Date: 2025-04-14 05:11:24+00:00\n"
+"POT-Creation-Date: 2025-04-29 10:20:54+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -45,27 +45,27 @@ msgstr ""
 msgid "Orders fetched successfully"
 msgstr ""
 
-#: app/View.php:131
+#: app/View.php:130
 msgid "Chatway Dashboard"
 msgstr ""
 
-#: app/View.php:132
+#: app/View.php:131
 msgid "Chatway"
 msgstr ""
 
-#: app/View.php:142
+#: app/View.php:141
 msgid "Chatway Full-Screen View"
 msgstr ""
 
-#: app/View.php:143
+#: app/View.php:142
 msgid "Full-Screen View"
 msgstr ""
 
-#: app/View.php:151
+#: app/View.php:150
 msgid "Chatway Logout"
 msgstr ""
 
-#: app/View.php:152
+#: app/View.php:151
 msgid "Log Out"
 msgstr ""
 

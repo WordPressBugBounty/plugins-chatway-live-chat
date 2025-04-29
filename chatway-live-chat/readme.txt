@@ -2,7 +2,7 @@ Chatway Live Chat – Customer Support, FAQ & Helpdesk Customer Service, Chat Bu
 Contributors: chatway, galdub, tomeraharon
 Tags: live chat, chat, WhatsApp, customer support, faq
 Requires at least: 3.1
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 Plugin URI: https://chatway.app/
 License: GPLv3
 
@@ -63,6 +63,8 @@ Besides our robust web live chat app, Chatway's iOS and Android apps allow users
 = 🛒 Deep WooCommerce integration: Instant Access to WooCommerce Visitors' Cart & Orders data and WooCommerce Store Data =
 Chatway live chat now gives you instant access to key visitor and store data directly inside the chat window, making personalized, real-time support effortless. Instantly view order history, including purchased items and total order value, without asking for order numbers or switching tabs. See what's in their cart, including total items and value, so you can guide them to checkout, recommend products, or recover abandoned carts. Plus, easily share clickable product links, suggest categories, and send active coupon codes — all within the chat.
 
+[youtube  https://www.youtube.com/watch?v=m3Tum7sMIRk]
+
 = 🚀 Add chat buttons like WhatsApp, Messenger, and more =
 With Chatway Live Chat, add chat buttons for WhatsApp, SMS, Instagram DM, Facebook Messenger, Telegram, Line, click-to-call, Email, TikTok, WeChat, Discord, Google Maps, Waze, and even create your own custom chat buttons. For example, add a WhatsApp chat button so users can chat with you through WhatsApp or their favorite chat channel.
 
@@ -92,6 +94,17 @@ The "Private Notes" feature in live chat empowers agents to write confidential i
 
 = 📂 File sharing through live chat = 
 Enable dynamic collaboration through live chat file-sharing feature between agents and website visitors. Effortlessly exchange files, fostering real-time interaction. This dual functionality enhances communication, ensuring swift live chat issue resolution and providing a seamless, interactive experience for both agents and visitors.
+
+= 💪 Other powerful live chat features =
+- <strong>Unlimited live chat conversations</strong> - chat with as many visitors as you like.
+- <strong>Unlimited websites</strong> - install Chatway live chat on all of your websites. Chatway live chat can be installed on any platform.
+- <strong>Post-chat automated surveys</strong> - send automated surveys to site visitors after their chat ends with a support team member to gather instant feedback and improve customer experience.
+- <strong>Email and push notifications</strong> - get email and push notifications for new live chat messages. Your visitors will also be notified via email when you answer they messages after leaving your website.
+- <strong>Collect visitors' details</strong> - add a contact form before or after visitors send you a message and collect any data like email, name, phone, address or any other custom field.
+- <strong>Email or download chat transcripts</strong> - download or email live chat transcripts to yourself or to your website's visitors.
+- <strong>Quick actions</strong> - reply to specific messages sent by your visitors, download image, delete or edit message (not available for visitors), and perform other quick actions while chatting with your visitors.
+- <strong>Widget and agent availability</strong> - set visibility hours for your live chat widget and working hours for your agents.
+- <strong>Advanced targeting options</strong> - you can show or hide the live chat widget on specific pages or based on the country of the visitor.
 
 = 🔗 Chatway Live Chat Demo =
 Chatway's live chat demo site is a user-friendly platform designed for efficient communication. Its intuitive live chat interface ensures easy navigation, providing a seamless experience for users and admins alike. Real-time messaging features highlight the platform's effectiveness, while customizable options and robust admin controls offer versatility. The responsive design and clean live chat layout enhance user experience, making it an ideal solution for businesses seeking to boost customer engagement through live chat.
@@ -158,6 +171,9 @@ Yes, you can. Your team will be able to respond to live chat tickets once you in
 8. Manage live chat, email, and Facebook Messengers chats in one place
 
 == Changelog ==
+
+= 1.3.7 =
+Important performance update 🚀
 
 = 1.3.6 =
 We added support for showing previous live chat conversations when your visitors log in to their account

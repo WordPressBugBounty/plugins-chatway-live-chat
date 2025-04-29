@@ -29,7 +29,9 @@ class View {
             foreach ($menu as $key => $value) {
                 if ($value[0] == 'Chatway') {
                     $count = $this->check_for_unread_messages();
-                    $menu[$key][0] = $menu[$key][0] . ' <span id="chatway-unread-count" class="update-plugins count-'.esc_attr($count).'"><span class="plugin-count" id="chatway-count">'.esc_attr($count).'</span></span>';
+                    if(!empty($count) && $count > 0) {
+                        $menu[$key][0] = $menu[$key][0] . ' <span id="chatway-unread-count" class="update-plugins count-' . esc_attr($count) . '"><span class="plugin-count" id="chatway-count">' . esc_attr($count) . '</span></span>';
+                    }
                 }
             }
         } else if(isset($_GET['page']) && $_GET['page'] == 'chatway') {
@@ -46,18 +48,14 @@ class View {
      */
     public function check_for_unread_messages() {
         $count = get_transient( 'chatway_unread_messages_count' );
-        if(!empty($count)) {
+        if($count !== false) {
             return $count;
         }
-        $user_identifier = get_option( 'chatway_user_identifier', '' );
-        $count = 0;
-        if (!empty( $user_identifier ) ) {
-            $count = ExternalApi::get_unread_messages_count();
-            if(empty($count)) {
-                $count = 0;
-            }
+        $count = ExternalApi::get_unread_messages_count();
+        if(empty($count)) {
+            $count = 0;
         }
-        set_transient( 'chatway_unread_messages_count', $count, 5*60 );
+        set_transient( 'chatway_unread_messages_count', $count, 5*MINUTE_IN_SECONDS );
         return $count;
     }
 
@@ -115,6 +113,7 @@ class View {
 
         switch ( $status ) {
             case 'valid':
+                delete_transient( 'chatway_unread_messages_count' );
                 \Chatway::include_once( 'views/dashboard.php' );
                 break;
             case 'invalid': 
@@ -136,7 +135,7 @@ class View {
             esc_url( \Chatway::url( 'assets/images/menu-icon.svg' ) )
         );
 
-        if ( ! empty( get_option( 'chatway_token', '' ) ) ) {
+        if ( ! empty( get_option( 'chatway_token', '' ) ) && get_option( 'chatway_has_auth_error', '' ) != 'yes') {
             add_submenu_page(
                 'chatway',
                 esc_html__( "Chatway Full-Screen View", 'chatway' ), 

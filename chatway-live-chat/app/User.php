@@ -100,5 +100,6 @@ class User extends Api
         delete_option( 'chatway_token' );
         delete_option( 'chatway_wp_plugin_version' );
         delete_option( 'chatway_secret_key' );
+        delete_option( 'chatway_has_auth_error' );
     }
 }

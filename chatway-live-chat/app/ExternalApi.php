@@ -17,7 +17,16 @@ class ExternalApi {
      * @return string Returns 'valid' if the token is valid, 'server-down' if the server is unreachable, or 'invalid' for other cases.
      */
     static function get_token_status() {
+        $has_error = get_option('chatway_has_auth_error', '');
+        if($has_error == 'yes') {
+            return 'invalid';
+        }
+
         $token    = get_option( 'chatway_token', '' );
+        if(empty($token)) {
+            return 'invalid';
+        }
+
         $response = wp_remote_get( 
             Url::remote_api( "/market-apps/connected?channel=wordpress" ), 
             [
@@ -32,7 +41,15 @@ class ExternalApi {
         $response_code = wp_remote_retrieve_response_code( $response );
 
         if( 200 == $response_code ) {
-            self::sync_wp_plugin_version();
+            $version = get_option('chatway_wp_plugin_version', '');
+            if($version != \Chatway::version()) {
+                self::sync_wp_plugin_version();
+            }
+        }
+
+        if( 401 == $response_code ) {
+            add_option( 'chatway_has_auth_error', 'yes' );
+            return 'invalid';
         }
 
         if ( 200 === $response_code ) return 'valid';
@@ -81,6 +98,14 @@ class ExternalApi {
     static function sync_chatway_sercet_key() {
         $secret_key = get_option( 'chatway_api_secret_license_key', '' );
         if(empty($secret_key)) {
+            $token      = get_option( 'chatway_token', '' );
+            if(empty($token)) {
+                return;
+            }
+            $has_error = get_option('chatway_has_auth_error', '');
+            if($has_error == 'yes') {
+                return;
+            }
             $data = random_bytes(16);
             $data[6] = chr((ord($data[6]) & 0x0f) | 0x40); // Set the version to 0100 (binary for v4)
             $data[8] = chr((ord($data[8]) & 0x3f) | 0x80); // Set the variant to 10xx (RFC variant)
@@ -90,7 +115,6 @@ class ExternalApi {
                 'site_url'  => site_url(),
                 'secret_key'  => $secret_key,
             ];
-            $token      = get_option( 'chatway_token', '' );
 
             $response = wp_remote_post(
                 Url::remote_api( "/wordpress-proxy-api-secret" ),
@@ -103,6 +127,11 @@ class ExternalApi {
                     'body'     => $payload
                 ]
             );
+
+            if (401 === wp_remote_retrieve_response_code( $response )) {
+                add_option( 'chatway_has_auth_error', 'yes' );
+            }
+
             if(!is_wp_error($response) && 200 === wp_remote_retrieve_response_code( $response )) {
                 $response = json_decode( wp_remote_retrieve_body( $response ), true );
                 if(isset($response['message']) && $response['message'] == 'Success') {
@@ -123,15 +152,20 @@ class ExternalApi {
      *                      or false if no secret key is available.
      */
     static function get_chatway_secret_key() {
-        $token      = get_option( 'chatway_token', '' );
-        $user_id    = get_option( 'chatway_user_identifier', '' );
-
-        if( empty( $token ) || empty( $user_id ) ) {
-            return false;
-        }
         $secret_key    = get_option( 'chatway_secret_key', '' );
         if(!empty($secret_key)) {
-             return $secret_key;
+            return $secret_key;
+        }
+
+        $has_error = get_option('chatway_has_auth_error', '');
+        if($has_error == 'yes') {
+            return false;
+        }
+
+        $token      = get_option( 'chatway_token', '' );
+        $user_id    = get_option( 'chatway_user_identifier', '' );
+        if( empty( $token ) || empty( $user_id ) ) {
+            return false;
         }
 
         $response = wp_remote_get(
@@ -144,6 +178,11 @@ class ExternalApi {
                 ],
             ]
         );
+
+        if (401 === wp_remote_retrieve_response_code( $response )) {
+            add_option( 'chatway_has_auth_error', 'yes' );
+            return false;
+        }
 
         if(!is_wp_error($response) && 200 === wp_remote_retrieve_response_code( $response )) {
             $response_code = json_decode( wp_remote_retrieve_body( $response ), true );
@@ -243,6 +282,11 @@ class ExternalApi {
      */
     static function get_unread_messages_count()
     {
+        $has_error = get_option('chatway_has_auth_error', '');
+        if($has_error == 'yes') {
+            return 0;
+        }
+
         $token      = get_option('chatway_token', '');
         $user_id    = get_option('chatway_user_identifier', '');
         if( empty( $token ) || empty( $user_id ) ) {
@@ -259,6 +303,11 @@ class ExternalApi {
                 ],
             ]
         );
+
+        if (401 === wp_remote_retrieve_response_code( $response )) {
+            add_option( 'chatway_has_auth_error', 'yes' );
+            return 0;
+        }
 
         $response_code = [];
         if(!is_wp_error($response) && 200 === wp_remote_retrieve_response_code( $response )) {
@@ -281,6 +330,11 @@ class ExternalApi {
      * @return void The method does not return any value.
      */
     public static function sync_wp_plugin_version($status = '', $chatway_status = 1) {
+        $has_error = get_option('chatway_has_auth_error', '');
+        if($has_error == 'yes') {
+            return;
+        }
+
         $token      = get_option('chatway_token', '');
         $user_id    = get_option('chatway_user_identifier', '');
         if (!empty($token) && !empty($user_id)) {
@@ -305,6 +359,12 @@ class ExternalApi {
                 ]
             ];
             $response = wp_remote_post(Url::remote_api( "/sync-wp-plugin-version" ), $request);
+
+            if (401 === wp_remote_retrieve_response_code( $response )) {
+                add_option( 'chatway_has_auth_error', 'yes' );
+                return;
+            }
+
             $response_code = [];
             if(!is_wp_error($response) && 200 === wp_remote_retrieve_response_code( $response )) {
                 $response_code = json_decode( wp_remote_retrieve_body( $response ), true );
