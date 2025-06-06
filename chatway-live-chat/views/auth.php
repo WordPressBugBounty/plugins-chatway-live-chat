@@ -15,4 +15,4 @@ if ( ! current_user_can( 'manage_options' ) ) {
 }
 ?>
 <!-- generate markup using @wordpress/element -->
-<div id="chatway-wp-plugin-root"></div>
+<div id="chatway-wp-plugin-root" class="chatway-page"></div>

@@ -3,7 +3,7 @@
  * Plugin Name:       Chatway Live Chat
  * Contributors:      chatway, galdub, tomeraharon
  * Description:       Chatway is a live chat app. Use Chatway to chat with your website's visitors.
- * Version:           1.3.8
+ * Version:           1.3.9
  * Tested up to:      6.8
  * Author:            Chatway Live Chat
  * Author URI:        https://chatway.app/
@@ -29,7 +29,7 @@ class Chatway {
      * 4. readme.txt Stable tag
      */ 
     public static function version() {
-        return '1.3.8';
+        return '1.3.9';
     }
 
     /**
@@ -126,16 +126,6 @@ register_activation_hook( __FILE__, [ $chatwayBase, 'activate' ] );
 register_deactivation_hook( __FILE__, [ $chatwayBase, 'deactivate' ] );
 
 
-/**
- * Register the uninstall hook 
- */
-if( ! function_exists( 'chatway_uninstall_hook' ) ) {
-    function chatway_uninstall_hook() {
-      ExternalApi::update_plugins_status( 'uninstall' );
-    }
-}
-
-register_uninstall_hook( __FILE__, 'chatway_uninstall_hook' );
 /**
  * Initialize the plugin 
  */ 
