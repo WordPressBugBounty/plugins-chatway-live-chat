@@ -110,6 +110,9 @@ Enable dynamic collaboration through live chat file-sharing feature between agen
 Chatway's live chat demo site is a user-friendly platform designed for efficient communication. Its intuitive live chat interface ensures easy navigation, providing a seamless experience for users and admins alike. Real-time messaging features highlight the platform's effectiveness, while customizable options and robust admin controls offer versatility. The responsive design and clean live chat layout enhance user experience, making it an ideal solution for businesses seeking to boost customer engagement through live chat.
 <a href="https://chatway.app/" target="_blank" title="Chatway for Android">Chatway Live Chat Demo website 🔗</a>.
 
+= 🔒 GDPR & data protection = 
+Chatway live chat includes flexible privacy settings aligned with GDPR and other data protection guidelines.
+
 = 🤗 Testimonials =
 > "Transform Your Customer Engagement with Chatway – A 5-Star Experience!<br>
 > Chatway is a standout live chat plugin for WordPress. It’s lightweight, user-friendly, and enhances customer interactions without slowing down your site. Highly recommend for stellar customer service!"<br><br>
