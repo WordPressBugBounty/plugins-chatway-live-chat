@@ -15,6 +15,21 @@ class View {
         add_action( 'admin_menu', [$this, 'dashboard_screen'] );
         add_action( 'admin_head', [$this, 'admin_head'] );
         add_action( 'admin_init', [$this, 'show_unread_messages_count']);
+        add_filter('plugin_action_links_'.\Chatway::plugin_base(), [$this, 'plugin_action_links']);
+    }
+
+    /**
+     * Adds a custom support link to the plugin action links in the WordPress plugins page.
+     *
+     * This method appends a 'Need help?' link pointing to the support URL to the default
+     * plugin action links displayed on the plugins management page.
+     *
+     * @param array $links An array of existing action links for the plugin.
+     * @return array Modified array of action links with the added support link.
+     */
+    public function plugin_action_links($links) {
+        $links[] = '<a target="_blank" href="'.esc_url(URL::support_url()).'">' . esc_html__( 'Need help?', 'chatway' ) . '</a>';
+        return $links;
     }
 
     /**
@@ -125,6 +140,35 @@ class View {
         }
     }
 
+    /**
+     * Adds a Support submenu page to the Chatway plugin in the WordPress admin menu.
+     *
+     * This method registers a submenu under the Chatway admin menu, providing access to
+     * the Support section where users can find assistance or additional resources related
+     * to the plugin.
+     *
+     * @return void
+     */
+    public function chatway_support_submenu() {
+        add_submenu_page(
+            'chatway',
+            esc_html__( "Support", 'chatway' ),
+            esc_html__( "Support", 'chatway' ),
+            'manage_options',
+            'chatway-need-help',
+            [$this, 'screen']
+        );
+    }
+
+    /**
+     * Registers the dashboard and submenu pages for the Chatway plugin in the WordPress admin menu.
+     *
+     * This method adds the main Chatway dashboard menu and its associated submenus,
+     * including Live Chat, Full-Screen View, and Logout options. Conditional logic
+     * is applied to show specific submenus based on the user's authentication status.
+     *
+     * @return void
+     */
     public function dashboard_screen() {
         add_menu_page(
             esc_html__( "Chatway Dashboard", 'chatway' ), 
@@ -133,6 +177,15 @@ class View {
             'chatway', 
             [$this, 'screen'], 
             esc_url( \Chatway::url( 'assets/images/menu-icon.svg' ) )
+        );
+
+        add_submenu_page(
+            'chatway',
+            esc_html__( "Live Chat", 'chatway' ),
+            esc_html__( "Live Chat", 'chatway' ),
+            'manage_options',
+            'chatway',
+            [$this, 'screen']
         );
 
         if ( ! empty( get_option( 'chatway_token', '' ) ) && get_option( 'chatway_has_auth_error', '' ) != 'yes') {
@@ -144,6 +197,8 @@ class View {
                 'chatway-full-screen',
                 [$this, 'screen']
             );
+
+            $this->chatway_support_submenu();
             
             add_submenu_page(
                 'chatway',
@@ -153,6 +208,8 @@ class View {
                 'chatway-logout',
                 [$this, 'screen']
             );
+        } else {
+            $this->chatway_support_submenu();
         }
     }
 }

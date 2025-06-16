@@ -115,6 +115,7 @@ class Assets {
                     'images'           => \Chatway::url( 'assets/images/' ),
                     'dashboardUrl'     => Url::admin_url(),
                     'fullScreenUrl'    => Url::full_screen_url(),
+                    'supportURL'       => Url::support_url(),
                     'internalEndpoint' => Url::internal_api(),
                     'remoteEndpoint'   => Url::remote_api(),
                     'landingPage'      => Url::landing_page(),
