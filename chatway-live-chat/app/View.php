@@ -28,7 +28,7 @@ class View {
      * @return array Modified array of action links with the added support link.
      */
     public function plugin_action_links($links) {
-        $links[] = '<a target="_blank" href="'.esc_url(URL::support_url()).'">' . esc_html__( 'Need help?', 'chatway' ) . '</a>';
+        $links[] = '<a target="_blank" href="'.esc_url(\Chatway::support_url()).'">' . esc_html__( 'Need help?', 'chatway' ) . '</a>';
         return $links;
     }
 

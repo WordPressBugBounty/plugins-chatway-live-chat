@@ -60,16 +60,6 @@ class Url {
     }
 
     /**
-     * Generates and returns the URL for the support page.
-     *
-     * @return string The URL of the support page.
-     */
-    public static function support_url() {
-        return 'https://wordpress.org/support/plugin/chatway-live-chat/';
-
-    }
-
-    /**
      * Constructs the full API URL by appending the specified endpoint to the base API URL.
      *
      * @param string $endpoint The endpoint to append to the API base URL. Defaults to an empty string.
