@@ -1,8 +1,8 @@
-Chatway Live Chat – Customer Support, FAQ & Helpdesk Customer Service, Chat Buttons, and WhatsApp
+Chatway Live Chat – Customer Support, FAQ & Helpdesk Customer Service & Chat Buttons
 Contributors: chatway, galdub, tomeraharon
 Tags: live chat, chat, WhatsApp, customer support, faq
 Requires at least: 3.1
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 Plugin URI: https://chatway.app/
 License: GPLv3
 
@@ -36,6 +36,7 @@ Chatway live chat is a powerful and versatile helpdesk live chat popup plugin, d
 - See which visitors currently visit your website and initiate live chat session with them
 - Add chat pop up buttons like WhatsApp, Instagram, Facebook Messenger, SMS, Telegram, Phone, Line, Email, TikTok, WeChat, Discord, Google Maps, Waze, and custom links
 - Pending messages icon for incoming live chat messages even when the Chatway live chat plugin isn't launched
+- Create separate live chat widget design for different websites
 - Let you see the conversation history and get the full picture before responding
 - Offer proactive live chat customer assistance that’ll rival your competitors
 - Start live chat conversations with customers, solve their queries and answer their questions
@@ -56,7 +57,7 @@ You can choose the Free plan for basic live chat features, or upgrade to the Pro
 Our WordPress live chat plugin includes an enhanced FAQ feature to reduce customer support tickets. With the FAQ feature, users can access instant answers within the live chat popup, addressing common questions without needing support. This customizable FAQ tool helps reduce ticket volume and improve customer satisfaction. By providing relevant information directly in the live chat popup, users resolve their issues faster, making support more efficient and streamlined
 
 = 📱 Live Chat Anywhere Using Our Native Mobile Apps for iOS & Android =
-Besides our robust web live chat app, Chatway's iOS and Android apps allow users to engage with website visitors while on the go. This mobile application offers real-time communication and convenience, enabling timely responses and stronger connections with the audience. Download the app now to stay connected and chat with visitors wherever you are.
+Besides our robust web live chat app, the Chatway iOS and Android apps allow users to engage with website visitors while on the go. This mobile application offers real-time communication and convenience, enabling timely responses and stronger connections with the audience. Download the app now to stay connected and chat with visitors wherever you are.
 <a href="https://apps.apple.com/us/app/chatway-website-live-chat/id6449775006" target="_blank" title="Chatway for iOS">Download Chatway for iOS 🔗</a>
 <a href="https://play.google.com/store/apps/details?id=com.chatway.mobile" target="_blank" title="Chatway for Android">Download Chatway for Android 🔗</a>
 
@@ -87,7 +88,7 @@ Using Chatway live chat you can see who's currently visiting your website, engag
 Connect your Facebook Messenger Business page to Chatway and receive any message sent through Facebook Messenger live chat directly to Chatway live chat. Respond through Chatway live chat and manage all your Facebook Messenger conversations in Chatway, streamlining your customer interactions and providing a unified live chat communication hub.
 
 = 📧 Email integration = 
-Easily set up a Chatway email address and receive emails directly within the Chatway platform. This integrated feature simplifies your communication channels, allowing you to conveniently respond to incoming emails from within Chatway live chat, creating a cohesive and efficient messaging hub for your business.
+Easily set up a Chatway email address and receive emails directly within the Chatway platform. You can also forward emails from your existing email address to Chatway live chat and create a new live chat ticket for each incoming email. This integrated feature simplifies your communication channels, allowing you to conveniently respond to incoming emails from within Chatway live chat, creating a cohesive and efficient messaging hub for your business.
 
 = 🔏 Live Chat Private Notes = 
 The "Private Notes" feature in live chat empowers agents to write confidential internal notes during customer interactions. Agents can tag colleagues, fostering seamless collaboration and knowledge-sharing. This enhances team communication, allowing for live chat real-time coordination and ensuring a more informed and efficient live chat customer support process.
@@ -105,6 +106,7 @@ Enable dynamic collaboration through live chat file-sharing feature between agen
 - <strong>Quick actions</strong> - reply to specific messages sent by your visitors, download image, delete or edit message (not available for visitors), and perform other quick actions while chatting with your visitors.
 - <strong>Widget and agent availability</strong> - set visibility hours for your live chat widget and working hours for your agents.
 - <strong>Advanced targeting options</strong> - you can show or hide the live chat widget on specific pages or based on the country of the visitor.
+- <strong>Live chat analytics</strong> - gain insights into helpdesk agents’ activities and live chat conversations.
 
 = 🔗 Chatway Live Chat Demo =
 Chatway's live chat demo site is a user-friendly platform designed for efficient communication. Its intuitive live chat interface ensures easy navigation, providing a seamless experience for users and admins alike. Real-time messaging features highlight the platform's effectiveness, while customizable options and robust admin controls offer versatility. The responsive design and clean live chat layout enhance user experience, making it an ideal solution for businesses seeking to boost customer engagement through live chat.
@@ -174,6 +176,9 @@ Yes, you can. Your team will be able to respond to live chat tickets once you in
 8. Manage live chat, email, and Facebook Messengers chats in one place
 
 == Changelog ==
+
+= 1.4.3 =
+We've improved the WordPress admin panel access flow
 
 = 1.4.2 =
 Improved settings page
