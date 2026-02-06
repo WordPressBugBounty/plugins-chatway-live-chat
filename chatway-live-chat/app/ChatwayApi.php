@@ -387,7 +387,7 @@ class ChatwayApi
                     $order['shipping_total'] =(float) $record->get_shipping_total();
                     $order['shipping_tax'] = (float)$record->get_shipping_tax();
                     $order['date'] = $record->get_date_created()->date('Y-m-d H:i:s');
-                    $order['admin_url'] = admin_url('/wp-admin/admin.php?page=wc-orders&action=edit&id='.$record->get_id());
+                    $order['admin_url'] = admin_url('admin.php?page=wc-orders&action=edit&id='.$record->get_id());
                     $order['url'] = $record->get_view_order_url();
                     $order['items'] = [];
                     $items = $record->get_items();
