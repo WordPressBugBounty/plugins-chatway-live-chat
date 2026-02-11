@@ -1,15 +1,15 @@
-# Copyright (C) 2025 Chatway Live Chat
+# Copyright (C) 2026 Chatway Live Chat
 # This file is distributed under the GPL v3 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: Chatway Live Chat 1.4.5\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wordpress-chatway-plugin\n"
-"POT-Creation-Date: 2025-12-08 09:31:53+00:00\n"
+"POT-Creation-Date: 2026-02-09 05:43:05+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2025-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2026-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -79,6 +79,14 @@ msgstr ""
 
 #: app/View.php:206
 msgid "Log Out"
+msgstr ""
+
+#: vendor/wp-cli/wp-cli/php/utils-wp.php:246
+msgid "Inactive Widgets"
+msgstr ""
+
+#: vendor/wp-cli/wp-cli/php/utils-wp.php:249
+msgid "Drag widgets here to remove them from the sidebar but keep their settings."
 msgstr ""
 
 #: views/auth.php:14 views/dashboard.php:14 views/error.php:15
