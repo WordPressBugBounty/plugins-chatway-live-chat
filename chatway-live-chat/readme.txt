@@ -3,7 +3,7 @@ Contributors: chatway, galdub, tomeraharon
 Tags: live chat, chat, chatbot, WhatsApp, customer support
 Requires at least: 3.1
 Tested up to: 6.9
-Stable tag: 1.4.6
+Stable tag: 1.4.7
 Plugin URI: https://chatway.app/
 License: GPLv3
 
@@ -15,7 +15,7 @@ Live chat with your website visitors on WordPress. Provide customer support usin
 
 Chatway live chat is an AI chatbot, helpdesk live chat app for communicating better & providing live chat customer support. Customers can engage with your business using the live chat button on your WordPress website, while the AI chatbot answers questions faster & automates customer support.
 
-[youtube  https://www.youtube.com/watch?v=Ra21ZeZwz50]
+[youtube  https://www.youtube.com/watch?v=bZdEDj5MVyo]
 
 = ✨ Chatway AI Chatbot with full human control =
 Chatway AI Chatbot helps businesses automate customer support, answer common questions, and assist website visitors 24/7. The AI chatbot learns from the data sources & website content, helping it deliver accurate answers over time. It can reduce repetitive support work, improve response times, and help your team handle more conversations. At the same time, with full human control. Your team monitors AI support agent chatbot conversations, step in whenever needed, manage how the AI chatbot responds and ensure support quality always matches your brand and customer experience standards. The AI chatbot can also help capture more and support live chat sales questions instantly.
@@ -197,6 +197,9 @@ Yes, you can connect your WhatsApp Business, Facebook Messenger page, Instagram 
 9. Manage live chat, email, Facebook Messenger, and Instagram DMs chats in one place
 
 == Changelog ==
+
+= 1.4.7 =
+Improved sign up flow
 
 = 1.4.6 =
 Improved support method
