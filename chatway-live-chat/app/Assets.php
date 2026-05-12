@@ -55,6 +55,7 @@ class Assets {
                 'userId'  => $userId,
                 'token' => $token,
                 'userName' => $userName,
+                'themeName' => wp_get_theme()->get('Name'),
             ];
             wp_localize_script( 'chatway-script', 'wpChatwaySettings',  $data );
 
