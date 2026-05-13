@@ -3,7 +3,7 @@ Contributors: chatway, galdub, tomeraharon
 Tags: live chat, chat, chatbot, WhatsApp, customer support
 Requires at least: 3.1
 Tested up to: 6.9
-Stable tag: 1.4.8
+Stable tag: 1.4.9
 Plugin URI: https://chatway.app/
 License: GPLv3
 
@@ -197,6 +197,9 @@ Yes, you can connect your WhatsApp Business, Facebook Messenger page, Instagram 
 9. Manage live chat, email, Facebook Messenger, and Instagram DMs chats in one place
 
 == Changelog ==
+
+= 1.4.9 =
+Improved user access handling
 
 = 1.4.8 =
 WooCommerce chat widget and cart widget overlap bug fixed

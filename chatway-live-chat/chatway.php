@@ -3,7 +3,7 @@
  * Plugin Name:       Chatway Live Chat
  * Contributors:      chatway, galdub, tomeraharon
  * Description:       Chatway is a live chat app. Use Chatway to chat with your website's visitors.
- * Version:           1.4.8
+ * Version:           1.4.9
  * Tested up to:      6.9
  * Author:            Chatway Live Chat
  * Author URI:        https://chatway.app/
@@ -29,7 +29,7 @@ class Chatway {
      * 4. readme.txt Stable tag
      */ 
     public static function version() {
-        return '1.4.8';
+        return '1.4.9';
     }
 
     /**

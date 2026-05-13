@@ -91,7 +91,11 @@ class Assets {
     public function enqueue_admin_assets() {
         /**
          * prepare dynamic dependencies 
-         */ 
+         */
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+
         $file_path = \Chatway::require( 'assets/js/app.asset.php', true );
         if( file_exists( $file_path ) ) {
             $file = require $file_path;
@@ -122,7 +126,6 @@ class Assets {
                     'landingPage'      => Url::landing_page(),
                     "termsOfService"   => Url::terms_of_service(),
                     "privacyPolicy"    => Url::privacy_policy(),
-                    'token'            => get_option( 'chatway_token', '' ),
                     'siteUrl'          => get_site_url(),
                 ] 
             );

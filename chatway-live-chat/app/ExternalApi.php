@@ -377,4 +377,24 @@ class ExternalApi {
             self::sync_chatway_sercet_key();
         }
     }
+
+    static function chatway_logout()
+    {
+        $token      = get_option('chatway_token', '');
+        if(empty($token)) {
+            return;
+        }
+
+        $request = [
+            'redirect' => 'follow',
+            'headers'  => [
+                'Accept'        => 'application/json',
+                'Authorization' => 'Bearer ' . $token
+            ]
+        ];
+        $response = wp_remote_post(Url::remote_api( "/wordpress/logout" ), $request);
+        if(!is_wp_error($response) && 200 === wp_remote_retrieve_response_code($response)) {
+            delete_option('chatway_token');
+        }
+    }
 }

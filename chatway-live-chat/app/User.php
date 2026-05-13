@@ -65,6 +65,7 @@ class User extends Api
      */ 
     public function get_logout() {
         ExternalApi::sync_wp_plugin_version(\Chatway::is_woocomerce_active(), 0);
+        ExternalApi::chatway_logout();
         User::clear_chatway_keys();
         if (function_exists('chatway_clear_all_caches')) {
             chatway_clear_all_caches();
