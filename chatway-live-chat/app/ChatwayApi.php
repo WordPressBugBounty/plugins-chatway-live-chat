@@ -158,10 +158,14 @@ class ChatwayApi
                 $product['id'] = $productData->get_id();
                 $product['name'] = $productData->get_name();
                 $product['price'] = $productData->get_price();
+                $product['regular_price'] = $productData->get_regular_price();
+                $product['currency'] = get_woocommerce_currency();
+                $product['symbol'] = get_woocommerce_currency_symbol();
                 $product['sku'] = $productData->get_sku();
                 $product['short_description'] = $productData->get_short_description();
                 $product['stock_status'] = $productData->get_stock_status();
                 $product['url'] = get_permalink($productData->get_id());
+                $product['type'] = $productData->get_type();
                 $categories = $productData->get_category_ids();
                 $image_id = $productData->get_image_id();
                 $product['thumb'] = '';
@@ -180,6 +184,52 @@ class ChatwayApi
                             'id'    => $id,
                             'url'   => get_term_link((int)$id, 'product_cat')
                         ];
+                    }
+                }
+
+                // Handle variable products
+                $product['variations'] = [];
+                $product['attributes'] = [];
+                if($productData->is_type('variable')) {
+                    // Get product attributes
+                    $attributes = $productData->get_variation_attributes();
+                    foreach($attributes as $attribute_name => $options) {
+                        $attribute_label = wc_attribute_label($attribute_name, $productData);
+                        $product['attributes'][] = [
+                            'name'    => $attribute_name,
+                            'label'   => $attribute_label,
+                            'options' => array_values($options)
+                        ];
+                    }
+
+                    // Get variations
+                    $variations = $productData->get_available_variations();
+                    foreach($variations as $variation) {
+                        $variation_obj = wc_get_product($variation['variation_id']);
+                        if($variation_obj) {
+                            $variation_data = [
+                                'id'            => $variation['variation_id'],
+                                'sku'           => $variation_obj->get_sku(),
+                                'price'         => $variation_obj->get_price(),
+                                'regular_price' => $variation_obj->get_regular_price(),
+                                'sale_price'    => $variation_obj->get_sale_price(),
+                                'stock_status'  => $variation_obj->get_stock_status(),
+                                'stock_quantity'=> $variation_obj->get_stock_quantity(),
+                                'is_in_stock'   => $variation_obj->is_in_stock(),
+                                'attributes'    => $variation['attributes'],
+                                'image'         => '',
+                                'thumb'         => ''
+                            ];
+
+                            // Get variation image
+                            $variation_image_id = $variation_obj->get_image_id();
+                            if($variation_image_id) {
+                                $variation_data['image'] = wp_get_attachment_url($variation_image_id);
+                                $variation_data['thumb'] = wp_get_attachment_image_url($variation_image_id, 'thumbnail');
+                            }
+
+                            $product['variations'][] = $variation_data;
+                        }
                     }
                 }
 

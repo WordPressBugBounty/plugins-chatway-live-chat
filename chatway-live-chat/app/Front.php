@@ -210,6 +210,7 @@ class Front
                 $product['total'] = (float)($cart_item['data']->get_price() * $cart_item['quantity']);
                 $product['product_name'] = $cart_item['data']->get_name();
                 $product['price'] = (float)$cart_item['data']->get_price();
+                $product['regular_price'] = $productData->get_regular_price();
                 $product['short_description'] = $productData->get_short_description();
                 $product['sku'] = $productData->get_sku();
                 $product['image'] = '';

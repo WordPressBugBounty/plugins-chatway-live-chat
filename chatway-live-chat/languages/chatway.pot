@@ -2,10 +2,10 @@
 # This file is distributed under the GPL v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Chatway Live Chat 1.4.9\n"
+"Project-Id-Version: Chatway Live Chat 1.5.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wordpress-chatway-plugin\n"
-"POT-Creation-Date: 2026-05-13 04:24:13+00:00\n"
+"POT-Creation-Date: 2026-05-26 04:09:50+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,19 +29,19 @@ msgstr ""
 msgid "Invalid request"
 msgstr ""
 
-#: app/ChatwayApi.php:190
+#: app/ChatwayApi.php:240
 msgid "Products fetched successfully"
 msgstr ""
 
-#: app/ChatwayApi.php:241
+#: app/ChatwayApi.php:291
 msgid "Categories fetched successfully"
 msgstr ""
 
-#: app/ChatwayApi.php:347
+#: app/ChatwayApi.php:397
 msgid "Coupons fetched successfully"
 msgstr ""
 
-#: app/ChatwayApi.php:436
+#: app/ChatwayApi.php:486
 msgid "Orders fetched successfully"
 msgstr ""
 

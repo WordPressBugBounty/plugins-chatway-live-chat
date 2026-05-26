@@ -2,8 +2,8 @@ Chatway Live Chat - AI Chatbot, Customer Support, FAQ & Helpdesk Customer Servic
 Contributors: chatway, galdub, tomeraharon
 Tags: live chat, chat, chatbot, WhatsApp, customer support
 Requires at least: 3.1
-Tested up to: 6.9
-Stable tag: 1.4.9
+Tested up to: 7.0
+Stable tag: 1.5.0
 Plugin URI: https://chatway.app/
 License: GPLv3
 
@@ -13,12 +13,12 @@ AI chatbot agent & live chat for customer support, FAQ, chat buttons including W
 
 Live chat with your website visitors on WordPress. Provide customer support using the Chatway AI chatbot and live chat app, FAQ, helpdesk, chat buttons including WhatsApp, Facebook Messenger, Instagram & more with a click to chat interface. The AI support agent chatbot picks up support tickets automatically, so human agents can focus on more complex issues.
 
-Chatway live chat is an AI chatbot, helpdesk live chat app for communicating better & providing live chat customer support. Customers can engage with your business using the live chat button on your WordPress website, while the AI chatbot answers questions faster & automates customer support.
+Chatway live chat is an AI chatbot & helpdesk live chat app for communicating better & providing live chat customer support. Customers can engage with your business using the live chat button, while the AI chatbot answers questions faster & automates customer support.
 
 [youtube  https://www.youtube.com/watch?v=bZdEDj5MVyo]
 
 = ✨ Chatway AI Chatbot with full human control =
-Chatway AI Chatbot helps businesses automate customer support, answer common questions, and assist website visitors 24/7. The AI chatbot learns from the data sources & website content, helping it deliver accurate answers over time. It can reduce repetitive support work, improve response times, and help your team handle more conversations. At the same time, with full human control. Your team monitors AI support agent chatbot conversations, step in whenever needed, manage how the AI chatbot responds and ensure support quality always matches your brand and customer experience standards. The AI chatbot can also help capture more and support live chat sales questions instantly.
+Chatway AI Chatbot helps businesses automate customer support, answer common questions, and assist website visitors 24/7. The AI chatbot learns from the data sources & website content, helping it deliver accurate answers. It can reduce repetitive support work, improve response times, and help your team handle more conversations. At the same time, with full human control. Your team monitors AI support agent chatbot conversations, step in whenever needed, manage how the AI chatbot responds and ensure support quality always matches your customer experience standards. The AI chatbot can also help capture more and support live chat sales questions instantly.
 
 = 👩‍💻 Why do you need Helpdesk Live Chat for your website? =
 - Real-Time Customer Support: Live chat enables instant assistance & higher customer satisfaction. Live chat facilitates quick issue resolution.
@@ -134,7 +134,7 @@ Chatway live chat uses flexible privacy settings aligned with GDPR and other dat
 > <strong>Moshe F. Saraf, Pareto Solutions</strong><br>
 
 > "Live chat and AI chatbot that work<br>
-> We are extremely satisfied with the live chat solution we use across all our websites – it works perfectly. The real-time translation is especially impressive, allowing us to manage sites in five different countries with ease. The new AI chatbot has made a big difference by helping us answer many inquiries quickly and efficiently. This has freed up valuable time for our customer service team to focus on more complex cases. The combination of live chat and an AI chatbot has truly elevated our customer experience."<br><br>
+> We are extremely satisfied with the live chat solution we use across all our websites - it works perfectly. The real-time translation is especially impressive, allowing us to manage sites in five different countries with ease. The new AI chatbot has made a big difference by helping us answer many inquiries quickly and efficiently. This has freed up valuable time for our customer service team to focus on more complex cases. The combination of live chat and an AI chatbot has truly elevated our customer experience."<br><br>
 > <strong>Henrik Bennarp, Halle System</strong><br>
 
 > "Transform Your Customer Engagement with Chatway - A 5-Star Experience!<br>
@@ -197,6 +197,9 @@ Yes, you can connect your WhatsApp Business, Facebook Messenger page, Instagram 
 9. Manage live chat, email, Facebook Messenger, and Instagram DMs chats in one place
 
 == Changelog ==
+
+= 1.5.0 =
+Improved the product sharing interface for WooCommerce stores. Product cards now display better details, pricing, variants, quantity, and working Buy Now and Add to Cart buttons. Fixed bugs related to the product sharing feature.
 
 = 1.4.9 =
 Improved user access handling
