@@ -1,9 +1,9 @@
 Chatway Live Chat - AI Chatbot, Customer Support, FAQ & Helpdesk Customer Service & Chat Buttons
 Contributors: chatway, galdub, tomeraharon
 Tags: live chat, chat, chatbot, WhatsApp, customer support
-Requires at least: 3.1
+Requires at least: 4.7
 Tested up to: 7.0
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 Plugin URI: https://chatway.app/
 License: GPLv3
 
@@ -11,24 +11,24 @@ AI chatbot agent & live chat for customer support, FAQ, chat buttons including W
 
 == Description ==
 
-Live chat with your website visitors on WordPress. Provide customer support using the Chatway AI chatbot and live chat app, FAQ, helpdesk, chat buttons including WhatsApp, Facebook Messenger, Instagram & more with a click to chat interface. The AI support agent chatbot picks up support tickets automatically, so human agents can focus on more complex issues.
+Live chat with your WordPress website visitors. Provide customer support using the Chatway AI chatbot and live chat app, FAQ, helpdesk, chat buttons including WhatsApp, Facebook Messenger, Instagram & more with a click to chat interface. The AI support agent chatbot picks up support tickets automatically, so human agents can focus on more complex issues.
 
-Chatway live chat is an AI chatbot & helpdesk live chat app for communicating better & providing live chat customer support. Customers can engage with your business using the live chat button, while the AI chatbot answers questions faster & automates customer support.
+Chatway live chat is an AI chatbot & helpdesk live chat app for communicating better & providing live chat customer support. Customers can start a chat using the live chat button, while the AI chatbot answers questions, automates customer support, and lets your team step in when needed.
 
 [youtube  https://www.youtube.com/watch?v=bZdEDj5MVyo]
 
 = ✨ Chatway AI Chatbot with full human control =
-Chatway AI Chatbot helps businesses automate customer support, answer common questions, and assist website visitors 24/7. The AI chatbot learns from the data sources & website content, helping it deliver accurate answers. It can reduce repetitive support work, improve response times, and help your team handle more conversations. At the same time, with full human control. Your team monitors AI support agent chatbot conversations, step in whenever needed, manage how the AI chatbot responds and ensure support quality always matches your customer experience standards. The AI chatbot can also help capture more and support live chat sales questions instantly.
+Chatway AI Chatbot helps businesses automate customer support, answer common questions, and assist website visitors 24/7. The AI chatbot learns from the data sources & website content, helping it deliver accurate answers. It can reduce repetitive support work, improve response times, and help your team handle more conversations with full human control. Your team monitors AI support agent chatbot conversations, step in whenever needed, manage how the AI chatbot responds and ensure support quality always matches your customer experience standards. The AI chatbot can also help capture more and support live chat sales questions instantly.
 
 = 👩‍💻 Why do you need Helpdesk Live Chat for your website? =
-- Real-Time Customer Support: Live chat enables instant assistance & higher customer satisfaction. Live chat facilitates quick issue resolution.
-- AI Chatbot Support: Add an AI chatbot to your website to answer common questions instantly, assist visitors 24/7, and reduce repetitive support requests. The AI chatbot learns from the data sources & website content, helping deliver relevant answers while your human agents monitor AI support agent chatbot conversations, step in anytime, and manage how the AI chatbot is used.
-- Lead Generation: Utilize helpdesk live chat, FAQ, chat buttons (WhatsApp, Facebook Messenger, Instagram, and more) as a proactive tool. Initiate conversations, answer inquiries, and guide potential customers, converting their interest into valuable leads through live chat.
-- Customer Feedback and Surveys: Embed helpdesk live chat pop up to gather feedback from your website users. Engage in real-time conversations & collect insights using live chat surveys.
-- Sales Support: Boost WooCommerce sales by integrating live chat & FAQ for personalized customer assistance. Guide users through product selection and offer real-time customer support, enhancing the overall shopping experience.
-- Technical Customer Support: Enhance customer satisfaction by providing live chat support & FAQ for technical queries.
-- Visitor Engagement and Retention: Implement helpdesk live chat & FAQ to engage website visitors. 
-- Live Visitors: See who's currently visiting your website and live chat with them.
+- Real-Time Customer Support: Live chat enables instant assistance & higher customer satisfaction. Live chat facilitates quick issue resolution
+- AI Chatbot Support: Add an AI chatbot to your website to answer common questions instantly, assist visitors 24/7, and reduce repetitive support requests. The AI chatbot learns from the data sources & website content, helping deliver relevant answers while your human agents monitor AI support agent chatbot conversations, step in anytime, and manage how the AI chatbot is used
+- Lead Generation: Utilize helpdesk live chat, FAQ, chat buttons (WhatsApp, Facebook Messenger, Instagram & more). Initiate conversations & answer inquiries converting their interest into valuable leads through live chat
+- Customer Feedback and Surveys: Embed helpdesk live chat pop up to gather feedback. Engage in real-time conversations & collect insights using live chat surveys
+- Sales Support: Boost WooCommerce sales by integrating live chat & FAQ for personalized customer assistance. Guide users through product selection and offer real-time customer support, enhancing the overall shopping experience
+- Technical Customer Support: Enhance customer satisfaction by providing live chat support & FAQ for technical queries
+- Visitor Engagement and Retention: Implement helpdesk live chat & FAQ to engage website visitors
+- Live Visitors: See who's currently visiting your website and live chat with them
 
 = 🎉 Chatway Live Chat is a powerful live chat WordPress plugin =
 Chatway live chat is a powerful AI chatbot & helpdesk live chat popup plugin. With Chatway live chat, easily integrate AI chatbot, live chat pop up, FAQ functionality & chat buttons like WhatsApp, Instagram, and more into your site, providing real-time assistance to visitors. Chatway live chat is user-friendly live chat plugin that effortlessly bolsters website engagement, offers real-time visitor customer support. 
@@ -51,8 +51,8 @@ Chatway live chat is a powerful AI chatbot & helpdesk live chat popup plugin. Wi
 - Chat web app, Android & iOS mobile apps to manage live chat support on the go
 
 = 🪄 Use Chatway Live Chat directly from your WordPress admin panel or as a standalone app =
-Live chat with website visitors directly from the Chatway panel, use the AI chatbot to answer common questions automatically, or use Chatway inside your WordPress admin panel & provide customer support live chat to your website's visitors.
-When logged-in visitors start a chat with you, their name, email, and profile picture are automatically synced with Chatway live chat, making it easy to see who you're chatting with, while the AI chatbot can use the available data sources & website content, to provide faster responses.
+Live chat with website visitors directly from the Chatway panel, use the AI chatbot to answer common questions automatically, or use Chatway inside your WordPress admin panel & provide customer support live chat.
+When logged-in visitors start a chat with you, their name, email, and profile picture are automatically synced with Chatway live chat, making it easy to see who you're chatting with, while the AI chatbot can use the available data sources & website content.
 
 = 👋 Chatway Live Chat & Helpdesk account =
 A free <a href="https://chatway.app" target="_blank" title="Chatway Live Chat">Chatway live chat</a> account will be created for you, the live chat popup script will be added to your website, and a click to chat popup widget will appear on your website. If you logout/remove the plugin, the chat widget will be removed.
@@ -73,7 +73,7 @@ Chatway live chat gives you access to visitor and store data directly inside the
 
 [youtube  https://www.youtube.com/watch?v=m3Tum7sMIRk]
 
-= 🚀 Add chat buttons like WhatsApp, Messenger, and more =
+= 🚀 Add chat buttons like WhatsApp, Messenger & more =
 With Chatway Live Chat, add chat buttons for WhatsApp, SMS, Instagram DM, Facebook Messenger, Telegram, Line, click-to-call, Email, TikTok, WeChat, Discord, Google Maps, Waze, and even create your own custom chat buttons. For example, add a WhatsApp chat button so users can chat with you through WhatsApp or their favorite chat channel.
 
 = 💾 Canned responses saved replies for commonly asked questions =
@@ -87,7 +87,7 @@ Create a customized live chat widget. Adjust colors, branding, and greetings to 
 
 = ✍️ Translate your live chat widget to other languages =
 Translate the live chat widget into multiple languages. Let visitors interact in their preferred language with your click to chat widget. With a multilingual live chat, break down language barriers, providing a more user-friendly platform. Live chat becomes a versatile tool, ensuring that audiences can engage effortlessly, for a better customer support experience.
-If you use the AI chatbot, it can also automatically answer in any language, helping you deliver support to a global audience.
+If you use the AI chatbot, it automatically answers in any language, helping you deliver support to a global audience.
 
 = 🧑‍🦱 View who's currently visiting your website =
 Using Chatway live chat see who's currently visiting your website, engage a live chat session & provide customer support instantly. 
@@ -98,6 +98,10 @@ Connect your WhatsApp Business (connect existing WhatsApp numbers or new WhatsAp
 = 📧 Email integration = 
 Set up a Chatway email address and receive emails to Chatway. Forward emails from your existing email address to Chatway live chat and create live chat tickets incoming emails. Simplify your communication, allowing you to conveniently respond to incoming emails from within Chatway live chat.
 
+= 👾 Chatway API docs =
+Developers can use the Chatway API docs to connect Chatway live chat, AI chatbot, contacts, conversations, and customer support workflows with their own apps, websites, CRMs, and internal tools. Use the API to build custom live chat integrations, sync chatbot and customer data, automate support processes, and extend Chatway for your business needs.
+<a href="https://developers.chatway.app/" target="_blank" title="Chatway API docs">Explore Chatway API docs 🔗</a>
+
 = 🙈 Mailchimp integration with live chat contacts =
 Connect Chatway to MailChimp and sync your live chat contacts to your MailChimp audience. Send live chat contacts to MailChimp with options like double opt in and tags, so all your live chat contacts are synced.
 
@@ -105,16 +109,16 @@ Connect Chatway to MailChimp and sync your live chat contacts to your MailChimp 
 Create rule-based workflows that automatically respond to visitor actions and chat events. Send replies, route conversations to the right agents, assign chats, add internal notes, update contact details, and trigger follow-ups. Automations help you reduce repetitive work.
 
 = 🔏 Live Chat Private Notes = 
-Agents can write notes and tag other teammates. Enhance team communication, allowing live chat real-time coordination and ensuring a more informed live chat customer support process.
+Write notes and tag other teammates. Enhance team communication, allowing live chat real-time coordination and ensuring a more informed live chat customer support process.
 
 = 📂 File sharing through live chat = 
-Collaborate through live chat file-sharing between agents and website visitors. This dual functionality enhances communication, ensuring swift live chat issue resolution and providing a seamless, interactive experience for both agents and visitors.
+Collaborate through live chat file-sharing between agents and website visitors. This functionality enhances communication, ensuring swift live chat issue resolution and providing a seamless experience for both agents & visitors.
 
 = 💪 Other powerful live chat features =
-- <strong>Unlimited live chat conversations</strong> - chat with all your visitors
+- <strong>Unlimited live chat conversations</strong> - chat with your visitors
 - <strong>Unlimited websites</strong> - install Chatway live chat on all of your websites. Install Chatway live chat on any platform
-- <strong>Post-chat automated surveys</strong> - send automated surveys to site visitors after their chat ends with a support team member to gather instant feedback and improve customer experience
-- <strong>Email and push notifications</strong> - get email and push notifications for new live chat messages. Your visitors will also be notified via email when you answer they messages after leaving your website
+- <strong>Post-chat automated surveys</strong> - send automated surveys to site visitors after their chat ends with a support team member to gather instant feedback
+- <strong>Email and push notifications</strong> - get email and push notifications for new live chat messages. Your visitors will also be notified via email
 - <strong>Collect visitors' details</strong> - show a contact form before/after visitors send a message &  collect email, name, phone, address or any custom field
 - <strong>Email or download chat transcripts</strong> - download or email live chat transcripts to yourself or to your website's visitors
 - <strong>Quick actions</strong> - reply to specific messages sent by your visitors, delete or edit message (not available for visitors), and perform other actions while chatting with your visitors
@@ -140,10 +144,6 @@ Chatway live chat uses flexible privacy settings aligned with GDPR and other dat
 > "Transform Your Customer Engagement with Chatway - A 5-Star Experience!<br>
 > Chatway is a standout live chat plugin for WordPress. It’s lightweight, user-friendly, and enhances customer interactions without slowing down your site. Highly recommend for stellar customer service!"<br><br>
 > <strong>Menny Benady, Benady New Media</strong><br>
-
-> "Smooth and easy<br>
-> Simple interface and a good way to engage with potential customers."<br><br>
-> <strong>Matias Yabar-Davila, Coach Social</strong>
 
 == Installation ==
 1. Install and activate Chatway plugin on your WordPress website
@@ -197,6 +197,10 @@ Yes, you can connect your WhatsApp Business, Facebook Messenger page, Instagram 
 9. Manage live chat, email, Facebook Messenger, and Instagram DMs chats in one place
 
 == Changelog ==
+
+= 1.5.1 =
+Fixed an issue where the show/hide password icon overlapped the input field border.
+Improved the responsiveness of the Chatway setup screen on larger and high-resolution displays, with increased sizing and better use of available screen space while preserving the existing layout on smaller screens.
 
 = 1.5.0 =
 Improved the product sharing interface for WooCommerce stores. Product cards now display better details, pricing, variants, quantity, and working Buy Now and Add to Cart buttons. Fixed bugs related to the product sharing feature.
