@@ -3,11 +3,11 @@ Contributors: chatway, galdub, tomeraharon
 Tags: live chat, chat, chatbot, WhatsApp, customer support
 Requires at least: 4.7
 Tested up to: 7.0
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 Plugin URI: https://chatway.app/
 License: GPLv3
 
-AI chatbot agent & live chat for customer support, FAQ, chat buttons including WhatsApp with Chatway live chat. iOS & Android apps available 💬
+AI chatbot agent & human live chat for customer support, FAQ, chat buttons including WhatsApp with Chatway live chat. iOS & Android apps available 💬
 
 == Description ==
 
@@ -197,6 +197,11 @@ Yes, you can connect your WhatsApp Business, Facebook Messenger page, Instagram 
 9. Manage live chat, email, Facebook Messenger, and Instagram DMs chats in one place
 
 == Changelog ==
+
+= 1.5.2 =
+Added WooCommerce order tracking to the Chatway widget. Visitors can check their order details using their order number and email address or phone number, while logged-in customers can view their order history and share an order summary directly in the chat.
+Added direct WordPress and WooCommerce data access for the Chatway AI agent. Website owners can connect websites and stores and control which published pages, posts, products, orders and fulfilments, carts, and checkout abandonment data the AI agent can access, without manually configuring WooCommerce API keys.
+Improved the accuracy and display of WooCommerce order details, including payment statuses, product prices, tax and refund information, notifications, and unread message states.
 
 = 1.5.1 =
 Fixed an issue where the show/hide password icon overlapped the input field border.

@@ -87,8 +87,18 @@ class ChatwayApi
 
 
         if(isset($_GET['token']) && !empty($_GET['token']) && isset($_GET['chatway_action']) && !empty($_GET['chatway_action'])) {
-            $chatway_action = sanitize_text_field(filter_input(INPUT_GET, 'chatway_action'));
-            if(\Chatway::is_woocomerce_active() && in_array($chatway_action, ['products', 'categories', 'orders', 'coupons']) && $this->validate_token()) {
+            $chatway_action = sanitize_text_field(filter_input(INPUT_GET, 'chatway_action'));            
+            if(!$this->validate_token()) {
+                $this->response['message'] = esc_html__('Invalid token', 'chatway');
+                wp_send_json($this->response);
+                exit;
+            }
+            if(in_array($chatway_action, ['products', 'categories', 'orders', 'coupons', 'get_order'])) {
+                if(!\Chatway::is_woocomerce_active()) {
+                    $this->response['message'] = esc_html__('WooCommerce is not active', 'chatway');
+                    wp_send_json($this->response);
+                    return;
+                }
                 if($chatway_action == 'products') {
                     $this->fetch_products();
                 } else if($chatway_action == 'categories') {
@@ -97,15 +107,118 @@ class ChatwayApi
                     $this->fetch_orders();
                 } else if($chatway_action == 'coupons') {
                     $this->fetch_coupons();
+                } else if($chatway_action == 'get_order') {
+                    $this->fetch_order();
                 }
-                $this->response['status']  = 1;
+                $this->response['status']  = 0;
                 $this->response['message'] = esc_html__('Invalid request', 'chatway');
                 wp_send_json($this->response);
                 return;
+            } else {
+                if (in_array($chatway_action, ['post_type_list', 'get_post_type_list', 'get_post_type_data'], true)) {
+                    if($chatway_action == 'post_type_list') {
+                        $this->get_post_type_list();
+                    } else if($chatway_action == 'get_post_type_data') {
+                        $this->get_post_type_data();
+                    }
+                }
             }
             $this->response['message'] = esc_html__('Invalid request', 'chatway');
             wp_send_json($this->response);
         }
+    }
+
+    public function get_post_type_list() {
+        $args = array(
+            'public'   => true,
+        );
+        $post_types = get_post_types($args, 'objects');
+
+        $records = [];
+        foreach ($post_types as $key => $post_type) {
+            if($key == 'attachment') {
+                continue;
+            }
+            $record = [];
+            $record['label'] = $post_type->labels->name;
+            $record['post_type'] = $key;
+            $count_posts = wp_count_posts($key);
+            $record['count'] = isset($count_posts->publish) ? (int) $count_posts->publish : 0;
+            $records[] = $record;
+        }
+
+        $this->response['status'] = 1;
+        $this->response['records'] = $records;
+        wp_send_json($this->response);
+        exit;
+    }
+
+
+    private function get_post_type_data()
+    {
+        $post_type = sanitize_text_field(filter_input(INPUT_GET, 'post_type'));
+        $args = array(
+            'public'   => true,
+        );
+        $post_types = get_post_types($args);
+        if ($post_type === 'attachment' || !isset($post_types[$post_type])) {
+            $this->response['message'] = esc_html__('Invalid post type', 'chatway');
+            wp_send_json($this->response);
+            exit;
+        }
+        $per_page = sanitize_text_field(filter_input(INPUT_GET, 'per_page'));
+        $current_page = sanitize_text_field(filter_input(INPUT_GET, 'current_page'));
+
+        $per_page = !is_numeric($per_page) || $per_page <= 1 ? 10 : absint($per_page);
+        $current_page = !is_numeric($current_page)  || $current_page <= 1 ? 1 : absint($current_page);
+
+        $query_args = [
+            'post_type'      => $post_type,
+            'post_status'    => 'publish',
+            'posts_per_page' => $per_page,
+            'paged'          => $current_page,
+        ];
+
+        $search = sanitize_text_field(filter_input(INPUT_GET, 's'));
+        if(!empty($search)) {
+            $query_args['s'] = $search;
+        }
+
+        $query = new \WP_Query($query_args);
+        
+        $results = [];
+        if ($query->have_posts()) {
+            foreach ($query->posts as $post) {
+                $record = [
+                    'id'           => $post->ID,
+                    'title'        => get_the_title($post),
+                    'post_content' => $post->post_content,
+                    'post_excerpt' => $post->post_excerpt,
+                    'url'          => get_permalink($post->ID),
+                    'categories'   => [],
+                    'tags'         => false,
+                ];
+                if($post_type == 'post') {
+                    $record['categories'] = get_the_category($post->ID);
+                    $record['tags'] = get_the_tags($post->ID);
+                }
+                $results[] = $record;
+            }
+        }
+
+        $records = [
+            'total_pages'   => $query->max_num_pages,
+            'current_page'  => $current_page,
+            'per_page'      => $per_page,
+            'total_records' => $query->found_posts,
+            'results'       => $results
+        ];
+
+        $this->response['status'] = 1;
+        $this->response['records'] = $records;
+        $this->response['message'] = esc_html__('Post data fetched successfully', 'chatway');
+        wp_send_json($this->response);
+        exit;
     }
 
     /**
@@ -121,7 +234,7 @@ class ChatwayApi
         if(!empty($token)) {
             $secure_token = get_option('chatway_api_secret_license_key');
             if(!empty($secure_token) && $secure_token === $token) {
-                return \Chatway::is_woocomerce_active();
+                return true;
             }
         }
         return false;
@@ -151,6 +264,9 @@ class ChatwayApi
                 $args['s'] = $search;
             }
             $records = get_posts($args);
+
+            $default_image = wc_placeholder_img_src();
+
             $products = [];
             foreach ($records as $record) {
                 $productData = wc_get_product($record->ID);
@@ -168,12 +284,12 @@ class ChatwayApi
                 $product['type'] = $productData->get_type();
                 $categories = $productData->get_category_ids();
                 $image_id = $productData->get_image_id();
-                $product['thumb'] = '';
-                $product['image'] = '';
+                $product['thumb'] = $default_image;
+                $product['image'] = $default_image;
                 $product['categories'] = [];
                 if($image_id) {
                     $product['image'] = wp_get_attachment_url($image_id);
-                    $product['thumb'] = get_the_post_thumbnail_url($product['id']);
+                    $product['thumb'] = get_the_post_thumbnail_url($product['id'], 'thumbnail');
                 }
 
                 foreach ($categories as $id) {
@@ -217,8 +333,8 @@ class ChatwayApi
                                 'stock_quantity'=> $variation_obj->get_stock_quantity(),
                                 'is_in_stock'   => $variation_obj->is_in_stock(),
                                 'attributes'    => $variation['attributes'],
-                                'image'         => '',
-                                'thumb'         => ''
+                                'image'         => $product['image'],
+                                'thumb'         => $product['thumb']
                             ];
 
                             // Get variation image
@@ -263,6 +379,7 @@ class ChatwayApi
                 $args['fields']     = 'all';
                 $args['name__like'] = $search;
             }
+            $default_image = wc_placeholder_img_src();
             $records = get_terms($args);
             $categories = [];
             foreach ($records as $record) {
@@ -274,7 +391,7 @@ class ChatwayApi
                 $category['products'] = $record->count;
                 $category['parent'] = $record->parent;
                 $category['url'] = get_term_link($record);
-                $category['image'] = '';
+                $category['image'] = $default_image;
 
                 // Get the URL of the category image
                 $thumbnail_id = get_term_meta($record->term_id, 'thumbnail_id', true);
@@ -422,23 +539,30 @@ class ChatwayApi
             $total_tax = 0;
             $final_total = 0;
             $discount = 0;
+            $total_refund = 0;
             if (!empty($records)) {
+                $default_image = wc_placeholder_img_src();
                 foreach ($records as $record) {
-                    if($record->get_status() == 'checkout-draft') {
+                    if($record->get_status() == 'checkout-draft' || $record->get_status() == 'trash') {
                         continue;
                     }
                     $order = [];
                     $order['id'] = $record->get_id();
                     $order['subtotal'] = $record->get_subtotal();
                     $order['tax'] = (float)$record->get_total_tax();
-                    $order['total'] = (float)$record->get_total();
+                    $order['total'] = (float)$record->get_total() - (float)$record->get_total_refunded();
                     $order['discount'] = (float)$record->get_discount_total();
-                    $order['status'] = ucfirst($record->get_status());
+                    $order['status'] = wc_get_order_status_name($record->get_status());
                     $order['shipping_total'] =(float) $record->get_shipping_total();
                     $order['shipping_tax'] = (float)$record->get_shipping_tax();
                     $order['date'] = $record->get_date_created()->date('Y-m-d H:i:s');
                     $order['admin_url'] = admin_url('admin.php?page=wc-orders&action=edit&id='.$record->get_id());
                     $order['url'] = $record->get_view_order_url();
+                    $order['billing_address'] = $record->get_address('billing');
+                    $order['shipping_address'] = $record->get_address('shipping');
+                    $order['payment_status'] = in_array( $record->get_payment_method(), array( 'cod', 'bacs', 'cheque' ) ) ? ( $record->get_status() === 'completed' ? 'Paid' : 'Unpaid' ) : ( $record->is_paid() ? 'Paid' : 'Unpaid' );
+                    $order['payment_method'] = $record->get_payment_method_title();
+                    $order['refund'] = (float)$record->get_total_refunded();
                     $order['items'] = [];
                     $items = $record->get_items();
                     $count = 0;
@@ -446,6 +570,7 @@ class ChatwayApi
                     $total_tax += (float)$record->get_total_tax();
                     $final_total += (float)$record->get_total();
                     $discount += (float)$record->get_discount_total();
+                    $total_refund += (float)$record->get_total_refunded();
                     foreach ($items as $item) {
                         $order['items'][$count]['product_id'] = $item->get_product_id();
                         $order['items'][$count]['product_url'] = get_permalink($item->get_product_id());
@@ -455,12 +580,12 @@ class ChatwayApi
                         $order['items'][$count]['subtotal_tax'] = (float)$item->get_subtotal_tax();
                         $order['items'][$count]['total'] = (float)$item->get_total();
                         $order['items'][$count]['discount'] = (float)$item->get_subtotal() - $item->get_total();
-                        $order['items'][$count]['image'] = '';
-                        $order['items'][$count]['thumb_image'] = '';
+                        $order['items'][$count]['image'] = $default_image;
+                        $order['items'][$count]['thumb_image'] = $default_image;
                         $thumbnail_url = get_the_post_thumbnail_url($item->get_product_id(), 'full');
                         if(!empty($thumbnail_url)) {
                             $order['items'][$count]['image'] = $thumbnail_url;
-                            $order['items'][$count]['thumb_image'] = get_the_post_thumbnail_url($item->get_product_id());
+                            $order['items'][$count]['thumb_image'] = get_the_post_thumbnail_url($item->get_product_id(), 'thumbnail');
                         }
                         $count++;
                     }
@@ -473,6 +598,7 @@ class ChatwayApi
                 'subtotal'  => (float)$total_subtotal,
                 'tax'       => (float)$total_tax,
                 'total'     => (float)$final_total,
+                'refund'     => (float)$total_refund,
                 'discount'  => (float)$discount,
                 'currency'  => get_woocommerce_currency(),
                 'symbol'  => get_woocommerce_currency_symbol(),
@@ -487,6 +613,127 @@ class ChatwayApi
             wp_send_json($this->response);
             exit;
         }
+    }
+
+    /**
+     * Fetch and process orders based on a user ID provided via a GET request.
+     *
+     * Retrieves orders for a specific user by sanitizing and validating the user ID
+     * obtained from the GET parameters. The method formats the retrieved order data
+     * including details about the order and its items such as product ID, names,
+     * quantities, totals, and associated images.
+     *
+     * @return void Outputs a JSON response with the status, fetched order records,
+     *              and a success or error message. If the user ID is invalid or orders
+     *              are unavailable, appropriate feedback is included in the response.
+     */
+    public function fetch_order() {
+        $email_id = sanitize_email(urldecode((string)filter_input(INPUT_GET, 'email_id')));
+        $order_id = absint(filter_input(INPUT_GET, 'order_id'));
+        if(empty($order_id) || empty($email_id)) {
+            $this->response['status'] = 0;
+            $this->response['message'] = esc_html__('Order id and email address are required', 'chatway');
+            wp_send_json($this->response);
+            exit;
+        }
+        if(!is_email($email_id)) {
+            $this->response['status'] = 0;
+            $this->response['message'] = esc_html__('Email address is not valid', 'chatway');
+            wp_send_json($this->response);
+            exit;
+        }
+
+        $record = wc_get_order( $order_id );
+
+        if(empty($record)) {
+            $this->response['status'] = 0;
+            $this->response['message'] = esc_html__('Order not found', 'chatway');
+            wp_send_json($this->response);
+            exit;
+        }
+
+        $order_email_id = $record->get_billing_email();
+
+        if(empty($order_email_id) || $order_email_id != $email_id) {
+            $this->response['status'] = 0;
+            $this->response['message'] = esc_html__('Order not found', 'chatway');
+            wp_send_json($this->response);
+            exit;
+        }
+
+        if ($record->get_status() == 'checkout-draft' || $record->get_status() == 'trash') {
+            $this->response['status'] = 0;
+            $this->response['message'] = esc_html__('Order not found', 'chatway');
+            wp_send_json($this->response);
+            exit;
+        }
+
+        $default_image = wc_placeholder_img_src();
+
+        $order = [];
+        $order['id'] = $record->get_id();
+        $order['subtotal'] = $record->get_subtotal();
+        $order['tax'] = (float)$record->get_total_tax();
+        $order['total'] = (float)$record->get_total() - (float)$record->get_total_refunded();
+        $order['discount'] = (float)$record->get_discount_total();
+        $order['refund'] = (float)$record->get_total_refunded();
+        $order['status'] = wc_get_order_status_name($record->get_status());
+        $order['shipping_total'] =(float) $record->get_shipping_total();
+        $order['shipping_tax'] = (float)$record->get_shipping_tax();
+        $order['date'] = $record->get_date_created()->date('Y-m-d H:i:s');
+        $order['admin_url'] = admin_url('admin.php?page=wc-orders&action=edit&id='.$record->get_id());
+        $order['url'] = $record->get_view_order_url();
+        $order['billing_address'] = $record->get_address('billing');
+        $order['shipping_address'] = $record->get_address('shipping');
+        $order['payment_status'] = in_array( $record->get_payment_method(), array( 'cod', 'bacs', 'cheque' ) ) ? ( $record->get_status() === 'completed' ? 'Paid' : 'Unpaid' ) : ( $record->is_paid() ? 'Paid' : 'Unpaid' );
+        $order['payment_method'] = $record->get_payment_method_title();
+        $order['items'] = [];
+        $items = $record->get_items();
+        $count = 0;
+        $total_subtotal = (float)$record->get_subtotal();
+        $total_tax = (float)$record->get_total_tax();
+        $final_total = (float)$record->get_total() - (float)$record->get_total_refunded();
+        $discount = (float)$record->get_discount_total();
+        $refund_amount = (float)$record->get_total_refunded();
+        foreach ($items as $item) {
+            $order['items'][$count]['product_id'] = $item->get_product_id();
+            $order['items'][$count]['product_url'] = get_permalink($item->get_product_id());
+            $order['items'][$count]['name'] = $item->get_name();
+            $order['items'][$count]['quantity'] = (float)$item->get_quantity();
+            $order['items'][$count]['subtotal'] = (float)$item->get_subtotal();
+            $order['items'][$count]['subtotal_tax'] = (float)$item->get_subtotal_tax();
+            $order['items'][$count]['total'] = (float)$item->get_total();
+            $order['items'][$count]['discount'] = (float)$item->get_subtotal() - $item->get_total();
+            $order['items'][$count]['image'] = $default_image;
+            $order['items'][$count]['thumb_image'] = $default_image;
+            $thumbnail_url = get_the_post_thumbnail_url($item->get_product_id(), 'full');
+            if(!empty($thumbnail_url)) {
+                $order['items'][$count]['image'] = $thumbnail_url;
+                $order['items'][$count]['thumb_image'] = get_the_post_thumbnail_url($item->get_product_id(), 'thumbnail');
+            }
+            $count++;
+        }
+
+
+        $data = [
+            'subtotal'  => (float)$total_subtotal,
+            'tax'       => (float)$total_tax,
+            'total'     => (float)$final_total,
+            'discount'  => (float)$discount,
+            'refund'    => (float)$refund_amount,
+            'currency'  => get_woocommerce_currency(),
+            'symbol'    => get_woocommerce_currency_symbol(),
+        ];
+
+        $this->response['status'] = 1;
+        $this->response['records'] = [
+            'order' => $order,
+            'data' => $data,
+        ];
+        $this->response['message'] = esc_html__('Orders fetched successfully', 'chatway');
+        wp_send_json($this->response);
+        exit;
+
     }
 
     /**

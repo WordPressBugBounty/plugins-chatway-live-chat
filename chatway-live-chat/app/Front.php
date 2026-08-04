@@ -12,6 +12,8 @@ class Front
 {
     use Singleton;
 
+    private $cart_updated_from_session = false;
+
     public function __construct()
     {
         add_action( 'wp_ajax_sync_chatway_data', [$this, 'check_for_conversation'] );
@@ -19,6 +21,8 @@ class Front
         add_action( 'woocommerce_add_to_cart', [$this, 'add_to_cart'], 10, 6 );
         add_action( 'woocommerce_after_cart_item_quantity_update', [$this, 'product_updated'], 10, 2 );
         add_action( 'woocommerce_cart_item_removed', [$this, 'item_removed'], 10, 2 );
+        add_action( 'woocommerce_remove_cart_item_from_session', [$this, 'cart_item_removed_from_session'], 10, 2 );
+        add_action( 'woocommerce_cart_loaded_from_session', [$this, 'cart_loaded_from_session'], 10, 1 );
         add_action( 'woocommerce_thankyou', [$this, 'handle_order_placed'], 10, 1 );
     }
 
@@ -164,6 +168,32 @@ class Front
     }
 
     /**
+     * Marks the cart as updated when an item is removed from the cart during session loading (e.g. when product is moved to trash).
+     *
+     * @param string $cart_item_key The unique key identifying the cart item.
+     * @param array $values Cart item values.
+     * @return void
+     */
+    public function cart_item_removed_from_session($cart_item_key, $values)
+    {
+        $this->cart_updated_from_session = true;
+    }
+
+    /**
+     * Calls update_cart_data if the cart was modified during session loading.
+     *
+     * @param object $cart The cart object.
+     * @return void
+     */
+    public function cart_loaded_from_session($cart)
+    {
+        if ($this->cart_updated_from_session) {
+            $this->update_cart_data();
+            $this->cart_updated_from_session = false;
+        }
+    }
+
+    /**
      * Updates the cart data by collecting details of the cart contents and sending it to an external API.
      * The method retrieves the cart items, prepares the product details, and sends the data if required cookies and tokens are available.
      *
@@ -197,8 +227,13 @@ class Front
             if(empty($contact_id)  || empty($contact_token)) {
                 return;
             }
+            if (!WC()->cart || !WC()->session) {
+                return;
+            }
+
             $cart_contents = WC()->cart->get_cart();
             $products = [];
+            $default_image = wc_placeholder_img_src();
             foreach ($cart_contents as $cart_item) {
                 $productData = wc_get_product($cart_item['product_id']);
                 $product = [];
@@ -206,15 +241,21 @@ class Front
                 $product['product_url'] = get_permalink($cart_item['product_id']);
                 $product['variation_id'] = intval($cart_item['variation_id']);
                 $product['quantity'] = intval($cart_item['quantity']);
-                $product['subtotal'] = (float)($cart_item['data']->get_price() * $cart_item['quantity']);
-                $product['total'] = (float)($cart_item['data']->get_price() * $cart_item['quantity']);
+                $product['subtotal'] = isset($cart_item['line_subtotal'])
+                    ? (float) $cart_item['line_subtotal']
+                    : (float)($cart_item['data']->get_price() * $cart_item['quantity']);
+                $product['total'] = isset($cart_item['line_total'])
+                    ? (float) $cart_item['line_total']
+                    : (float)($cart_item['data']->get_price() * $cart_item['quantity']);
+                $product['subtotal_tax'] = isset($cart_item['line_subtotal_tax']) ? (float) $cart_item['line_subtotal_tax'] : 0;
+                $product['total_tax'] = isset($cart_item['line_tax']) ? (float) $cart_item['line_tax'] : 0;
                 $product['product_name'] = $cart_item['data']->get_name();
                 $product['price'] = (float)$cart_item['data']->get_price();
                 $product['regular_price'] = $productData->get_regular_price();
                 $product['short_description'] = $productData->get_short_description();
                 $product['sku'] = $productData->get_sku();
-                $product['image'] = '';
-                $product['thumb_image'] = '';
+                $product['image'] = $default_image;
+                $product['thumb_image'] = $default_image;
                 $thumbnail_url = get_the_post_thumbnail_url($cart_item['product_id'], 'full');
                 if(!empty($thumbnail_url)) {
                     $product['image'] = $thumbnail_url;
@@ -234,6 +275,9 @@ class Front
             $cart['cart_info']['currency'] = get_woocommerce_currency();
             $cart['cart_info']['symbol'] = get_woocommerce_currency_symbol();
             ExternalApi::send_cart_data($contact_id, $cart, $contact_token);
+            WC()->session->set('chatway_contact_id', $contact_id);
+            WC()->session->set('chatway_contact_token', $contact_token);
+            WC()->session->set('chatway_cart_data', $cart);
         }
     }
 }
